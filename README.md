@@ -1,1 +1,1 @@
-https://alectronic-solutions.github.io/
+alectronic-solutions.github.io/
