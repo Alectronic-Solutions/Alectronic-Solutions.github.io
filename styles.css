@@ -1,0 +1,1261 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(45deg, #0000ff, #000000);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+    color: #333;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Header styling */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: transparent;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    position: relative;
+}
+
+header .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    font-family: 'Courier New', Courier, monospace;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+header .logo img {
+    transition: transform 0.3s ease;
+}
+
+header .logo img:hover {
+    transform: scale(1.1);
+}
+
+header .site-title {
+    color: #FFD700;
+    font-family: 'Courier New', Courier, monospace;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-left: 1rem;
+    flex-grow: 1;
+    text-align: center;
+}
+
+header:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Translucent background on hover */
+}
+
+/* Navigation bar styling */
+nav ul {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li a {
+    color: #FFD700;
+    text-decoration: none;
+    padding: 0.5rem;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    font-family: 'Courier New', Courier, monospace;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+nav ul li a:hover {
+    color: orange;
+    text-decoration: underline;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+    background-color: transparent; /* Remove background on hover */
+}
+
+/* Remove translucent background from the entire nav bar on hover */
+nav:hover {
+    background-color: transparent; /* Remove background on hover */
+}
+
+/* Hamburger menu styling */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.hamburger div {
+    width: 30px;
+    height: 3px;
+    background-color: #FFD700;
+    margin: 5px 0;
+    transition: 0.4s;
+}
+
+.hamburger.active div:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger.active div:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active div:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* Main container styling */
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    padding-top: 80px;
+}
+
+/* Hero section styling */
+#hero {
+    text-align: center;
+    padding: 2rem 0;
+    background: rgba(255, 255, 255, 0);
+}
+
+#hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    animation: zoomIn 1s ease-in-out;
+    color: #FFD700;
+    text-shadow: none;
+}
+
+@keyframes zoomIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+#hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: white;
+}
+
+#hero button {
+    margin: 0 0.5rem;
+    background: orange;
+    color: black;
+    font-weight: bold;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+#hero button:hover {
+    background: #FFD700; /* Bright yellow background on hover */
+    color: black; /* Ensure text color remains readable */
+    transform: scale(1.05);
+}
+
+/* Section styling */
+section {
+    padding: 20px;
+    margin: 20px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Services section styling */
+#services {
+    text-align: center;
+    padding: 2rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    background: none;
+}
+
+#services .service {
+    flex: 1 1 calc(50% - 2rem); /* Ensure 50% width for two per row */
+    margin: 1rem;
+    background: none;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    box-shadow: none;
+    padding: 1rem;
+    text-align: center;
+    max-width: 300px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%; /* Ensure all cards have the same height */
+}
+
+#services .service img {
+    width: 100%;
+    height: 200px; /* Fixed height for all images */
+    object-fit: cover; /* Ensure images cover the area */
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+#services .service h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #FFD700; /* Change to brighter yellow */
+}
+
+#services .service p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    flex-grow: 1; /* Allow the paragraph to grow and fill space */
+}
+
+#services .service button {
+    margin: 0.5rem;
+    background: orange;
+    color: black;
+    font-weight: bold;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+#services .service button:hover {
+    background: #FFD700; /* Bright yellow background on hover */
+    color: black; /* Ensure text color remains readable */
+    transform: scale(1.05);
+}
+
+/* Projects section styling */
+.projects {
+    padding: 2rem 0;
+    background: none; /* No background color */
+    text-align: center; /* Center the content */
+    display: flex; /* Display cards in a row */
+    flex-wrap: wrap; /* Wrap cards to the next line if necessary */
+    justify-content: center; /* Center the cards horizontally */
+    gap: 1rem; /* Space between cards */
+}
+
+.projects h1 {
+    width: 100%; /* Ensure the title takes full width */
+    color: #FFD700; /* Yellow color for the title */
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.project-card {
+    flex: 1 1 calc(33% - 2rem); /* Ensure 3 cards per row */
+    margin: 1rem;
+    background: none;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    box-shadow: none;
+    padding: 1rem;
+    text-align: center;
+    max-width: 300px;
+    color: white;
+}
+
+.project-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #FFD700; /* Change to brighter yellow */
+}
+
+.project-card p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.project-card button {
+    margin: 0.5rem;
+    background: orange;
+    color: black;
+    font-weight: bold;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.project-card button:hover {
+    background: #FFD700; /* Bright yellow background on hover */
+    color: black; /* Ensure text color remains readable */
+    transform: scale(1.05);
+}
+
+@media (max-width: 600px) {
+    #services .service,
+    .project-card {
+        flex: 1 1 calc(100% - 2rem); /* Full width on mobile */
+        max-width: 100%;
+    }
+}
+
+/* Blog section styling */
+#blog {
+    text-align: center;
+    padding: 40px 20px;
+    background: none; /* No background color */
+    display: flex; /* Display cards in a row */
+    flex-wrap: wrap; /* Wrap cards to the next line if necessary */
+    justify-content: center; /* Center the cards horizontally */
+    gap: 1rem; /* Space between cards */
+}
+
+#blog h1 {
+    width: 100%; /* Ensure the title takes full width */
+    color: #FFD700; /* Yellow color for the title */
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.blog-card {
+    flex: 1 1 calc(33% - 2rem); /* Ensure 3 cards per row */
+    margin: 1rem;
+    background: none;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    box-shadow: none;
+    padding: 1rem;
+    text-align: center;
+    max-width: 300px;
+    color: white;
+}
+
+.blog-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #FFD700; /* Change to brighter yellow */
+}
+
+.blog-card p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.blog-card button {
+    margin: 0.5rem;
+    background: orange;
+    color: black;
+    font-weight: bold;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.blog-card button:hover {
+    background: #FFD700; /* Bright yellow background on hover */
+    color: black; /* Ensure text color remains readable */
+    transform: scale(1.05);
+}
+
+/* Modal styling for blog section */
+.blog-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 600px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    background: linear-gradient(
+        145deg,
+        rgba(128, 128, 128, 0.9) 0%,
+        rgba(64, 64, 64, 0.9) 100%
+    );
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.blog-modal.active {
+    display: block;
+}
+
+.blog-modal-content {
+    padding: 15px;
+    text-align: center;
+    color: white;
+}
+
+.blog-modal-content h2 {
+    font-size: 1.4rem;
+    margin: 0 0 12px 0;
+    color: #FFD700;
+}
+
+.blog-modal-content p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin: 0 0 10px 0;
+}
+
+.blog-modal-content p strong {
+    color: #FFD700; /* Yellow color for the words before the colons in paragraphs */
+}
+
+.blog-modal-content ul,
+.blog-modal-content ol {
+    text-align: left;
+    padding-left: 20px;
+    margin: 10px 0;
+    font-size: 0.85rem;
+}
+
+.blog-modal-content li {
+    margin-bottom: 6px;
+}
+
+.blog-modal-content strong {
+    color: #FFD700; /* Yellow color for the words before the colons */
+}
+
+.blog-modal button {
+    margin-top: 10px;
+    padding: 8px 20px;
+    font-size: 0.9rem;
+    background: orange;
+    color: black;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    transition: background 0.3s ease, transform 0.3s ease;
+    cursor: pointer; /* Add this line */
+}
+
+.blog-modal button:hover {
+    background: #FFD700; /* Bright yellow background on hover */
+    color: black; /* Ensure text color remains readable */
+    transform: scale(1.05);
+}
+
+/* Portfolio section styling */
+#portfolio {
+    background: none; /* No background color */
+    padding: 20px;
+    margin: 20px;
+    text-align: center; /* Center the content */
+}
+
+#portfolio h1 {
+    color: #FFD700; /* Yellow color for the title */
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+#portfolio .icon-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Space between icons */
+}
+
+#portfolio .icon-placeholder {
+    width: 100px; /* Increased from 80px */
+    height: 100px; /* Increased from 80px */
+    background: none; /* No background for icons */
+    border: none; /* Remove border for actual images */
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    cursor: pointer; /* Change cursor to hand */
+}
+
+#portfolio .icon-placeholder img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+#portfolio .icon-placeholder:hover {
+    transform: scale(1.1); /* Hover effect */
+}
+
+@media (max-width: 600px) {
+    #portfolio .icon-placeholder {
+        width: 80px; /* Smaller size for mobile */
+        height: 80px; /* Smaller size for mobile */
+    }
+}
+
+/* About section styling */
+#about {
+    padding: 40px 20px;
+    text-align: center;
+    background: none; /* No background color */
+}
+
+#about h1 {
+    color: #FFD700; /* Yellow color for the title */
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: white; /* Change text color to white */
+}
+
+.about-content p {
+    margin-bottom: 20px;
+}
+
+.about-logo {
+    display: block;
+    margin: 20px auto 0; /* Move logo to the bottom */
+    height: 100px; /* Make the logo bigger */
+    transition: transform 0.3s ease;
+    cursor: pointer; /* Change cursor to hand */
+}
+
+.about-logo:hover {
+    animation: spin 1s linear infinite; /* Continuous spin animation */
+}
+
+.about-logo.shoot {
+    animation: shootOff 4s ease-in-out; /* Shoot off to the right and come back */
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes shootOff {
+    0% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(100vw); /* Move off the right side of the page */
+    }
+    50% {
+        transform: translateX(-100vw); /* Move off the left side of the page */
+    }
+    75% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.about-logo.flip {
+    animation: flip 1s linear; /* Flip vertically on click */
+}
+
+@keyframes flip {
+    from {
+        transform: rotateX(0deg);
+    }
+    to {
+        transform: rotateX(360deg);
+    }
+}
+
+.about-logo.flip {
+    animation: flip 1s linear; /* Flip horizontally on click */
+}
+
+@keyframes flip {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(360deg);
+    }
+}
+
+.about-logo.spin {
+    animation: spinOnce 1s linear; /* Spin 360 degrees on click */
+}
+
+@keyframes spinOnce {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.about-logo.bounce {
+    animation: bounce 6s ease-in-out; /* Slower bounce animation on click */
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateX(0) translateY(0);
+    }
+    20% {
+        transform: translateX(20vw) translateY(-50px); /* Bounce up */
+    }
+    40% {
+        transform: translateX(40vw) translateY(0); /* Bounce down */
+    }
+    60% {
+        transform: translateX(60vw) translateY(-50px); /* Bounce up */
+    }
+    80% {
+        transform: translateX(80vw) translateY(0); /* Bounce down */
+    }
+    100% {
+        transform: translateX(100vw) translateY(0); /* Move off the right side of the page */
+    }
+    120% {
+        transform: translateX(-100vw) translateY(0); /* Move off the left side of the page */
+    }
+    140% {
+        transform: translateX(0) translateY(0); /* Back to center */
+    }
+}
+
+.about-logo.flip-vertical {
+    animation: flipVertical 1s linear; /* Flip vertically on click */
+}
+
+@keyframes flipVertical {
+    from {
+        transform: rotateX(0deg);
+    }
+    to {
+        transform: rotateX(360deg);
+    }
+}
+
+/* Blog section styling */
+#blog {
+    text-align: center;
+    padding: 40px 20px;
+    background: none; /* No background color */
+    display: flex; /* Display cards in a row */
+    flex-wrap: wrap; /* Wrap cards to the next line if necessary */
+    justify-content: center; /* Center the cards horizontally */
+    gap: 1rem; /* Space between cards */
+}
+
+#blog h1 {
+    width: 100%; /* Ensure the title takes full width */
+    color: #FFD700; /* Yellow color for the title */
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.blog-card {
+    flex: 1 1 calc(33% - 2rem); /* Ensure 3 cards per row */
+    margin: 1rem;
+    background: none;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    box-shadow: none;
+    padding: 1rem;
+    text-align: center;
+    max-width: 300px;
+    color: white;
+}
+
+.blog-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #FFD700; /* Change to brighter yellow */
+}
+
+.blog-card p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.blog-card button {
+    margin: 0.5rem;
+    background: orange;
+    color: black;
+    font-weight: bold;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.blog-card button:hover {
+    background: #FFD700; /* Bright yellow background on hover */
+    color: black; /* Ensure text color remains readable */
+    transform: scale(1.05);
+}
+
+/* Modal styling for blog section */
+.blog-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 600px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    background: linear-gradient(
+        145deg,
+        rgba(128, 128, 128, 0.9) 0%,
+        rgba(64, 64, 64, 0.9) 100%
+    );
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.blog-modal.active {
+    display: block;
+}
+
+.blog-modal-content {
+    padding: 15px;
+    text-align: center;
+    color: white;
+}
+
+.blog-modal-content h2 {
+    font-size: 1.4rem;
+    margin: 0 0 12px 0;
+    color: #FFD700;
+}
+
+.blog-modal-content p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin: 0 0 10px 0;
+}
+
+.blog-modal-content p strong {
+    color: #FFD700; /* Yellow color for the words before the colons in paragraphs */
+}
+
+.blog-modal-content ul,
+.blog-modal-content ol {
+    text-align: left;
+    padding-left: 20px;
+    margin: 10px 0;
+    font-size: 0.85rem;
+}
+
+.blog-modal-content li {
+    margin-bottom: 6px;
+}
+
+.blog-modal-content strong {
+    color: #FFD700; /* Yellow color for the words before the colons */
+}
+
+.blog-modal button {
+    margin-top: 10px;
+    padding: 8px 20px;
+    font-size: 0.9rem;
+    background: orange;
+    color: black;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    transition: background 0.3s ease, transform 0.3s ease;
+    cursor: pointer; /* Add this line */
+}
+
+.blog-modal button:hover {
+    background: #FFD700; /* Bright yellow background on hover */
+    color: black; /* Ensure text color remains readable */
+    transform: scale(1.05);
+}
+
+/* Footer styling */
+footer {
+    background-color: #000000;
+    color: #fff;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.footer-logo img {
+    height: 80px;
+    margin-bottom: 1rem;
+}
+
+.footer-logo h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #FFD700;
+}
+
+.footer-logo p {
+    margin: 0.5rem 0;
+}
+
+.footer-links,
+.footer-contact,
+.footer-social {
+    flex: 1 1 200px;
+    margin: 1rem;
+}
+
+.footer-links h3,
+.footer-contact h3,
+.footer-social h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #FFD700;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-links ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+    color: #FFD700;
+}
+
+.footer-contact form {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-contact input,
+.footer-contact textarea {
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 5px;
+}
+
+.footer-contact button {
+    padding: 0.5rem;
+    background: orange;
+    color: black;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.footer-contact button:hover {
+    background: #FFD700; /* Bright yellow background on hover */
+    color: black; /* Ensure text color remains readable */
+    transform: scale(1.05);
+}
+
+.footer-contact a {
+    color: #FFD700; /* Yellow color for contact links */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-contact a:hover {
+    color: orange; /* Change to orange on hover */
+}
+
+.footer-social {
+    text-align: center;
+    margin: 1rem;
+}
+
+.footer-social h3 {
+    color: #FFD700;
+    margin-bottom: 1rem;
+}
+
+.footer-social a {
+    color: #ffffff;
+    margin: 15px; /* Adjust this value to change the spacing */
+    font-size: 24px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.footer-social a:hover {
+    color: orange;
+    transform: scale(1.2);
+}
+
+.footer-social i {
+    vertical-align: middle;
+}
+
+.footer-social a {
+    display: inline-block;
+    margin: 0 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.footer-social a img {
+    height: 30px;
+}
+
+.footer-social a:hover {
+    transform: scale(1.1);
+}
+
+.footer-social .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Adjust the gap as needed */
+}
+
+.footer-bottom {
+    margin-top: 2rem;
+    border-top: 1px solid #444;
+    padding-top: 1rem;
+    text-align: center; /* Center the text */
+}
+
+.footer-bottom p {
+    display: inline-block; /* Change to inline-block for better centering */
+    margin: 0 10px;
+    font-size: 0.9rem;
+}
+
+.footer-bottom p a {
+    color: #FFD700;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-bottom p a:hover {
+    color: orange;
+}
+
+/* Responsive footer */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-links,
+    .footer-contact,
+    .footer-social {
+        text-align: center;
+    }
+
+    .footer-bottom p {
+        display: block; /* Change to block for better centering on mobile */
+        margin: 5px 0; /* Adjust margin for better spacing */
+    }
+}
+
+/* Modal styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 350px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    background: linear-gradient(
+        145deg,
+        rgba(128, 128, 128, 0.9) 0%,
+        rgba(64, 64, 64, 0.9) 100%
+    );
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal.active {
+    display: block;
+}
+
+.modal-content {
+    padding: 15px;
+    text-align: center;
+    color: white;
+}
+
+.modal-content h2 {
+    font-size: 1.4rem;
+    margin: 0 0 12px 0;
+    color: #FFD700;
+}
+
+.modal-content p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin: 0 0 10px 0;
+}
+
+.modal-content ul {
+    text-align: left;
+    padding-left: 20px;
+    margin: 10px 0;
+    font-size: 0.85rem;
+}
+
+.modal-content li {
+    margin-bottom: 6px;
+}
+
+.modal-content button {
+    margin-top: 10px;
+    padding: 8px 20px;
+    font-size: 0.9rem;
+    background: orange;
+    color: black;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    transition: background 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+}
+
+.modal-content button:hover {
+    background: #FFD700; /* Bright yellow background on hover */
+    color: black; /* Ensure text color remains readable */
+    transform: scale(1.05);
+}
+
+.close {
+    color: #FFD700;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Overlay styling */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+}
+
+#overlay.active {
+    display: block;
+}
+
+/* Testimonials section styling */
+#testimonials {
+    text-align: center;
+    padding: 40px 20px;
+    background: none; /* No background color */
+}
+
+#testimonials h1 {
+    color: #FFD700; /* Yellow color for the title */
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.testimonial-carousel {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.testimonial {
+    display: none;
+    padding: 20px;
+    background: none; /* No background */
+    border-radius: 5px;
+    box-shadow: none; /* No shadow */
+    text-align: center;
+    color: white;
+}
+
+.testimonial.active {
+    display: block;
+}
+
+.testimonial p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.testimonial .author {
+    font-size: 1.2rem;
+    color: #FFD700; /* Yellow color for the author */
+}
+
+.carousel-controls {
+    display: none; /* Hide the carousel controls */
+}
+
+#message {
+    resize: none; /* Prevent resizing */
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 1rem;
+        width: calc(100% - 40px);
+        align-items: flex-end; /* Align links to the right side */
+    }
+
+    nav ul.active {
+        display: flex;
+    }
+
+    nav ul li {
+        margin-bottom: 1rem;
+        text-align: right; /* Align text to the right */
+    }
+
+    nav ul li:last-child {
+        margin-bottom: 0;
+    }
+
+    nav ul li:first-child a {
+        background-color: transparent; /* Completely transparent background for Home link */
+        color: transparent; /* Completely transparent text color for Home link */
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+    }
+
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    header .site-title {
+        font-size: 1.5rem;
+        margin-top: 0.5rem;
+    }
+
+    nav ul {
+        width: calc(100% - 40px);
+    }
+
+    nav ul li {
+        text-align: right; /* Align text to the right */
+    }
+
+    .header-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header .site-title {
+        font-size: 1.5rem;
+        margin-top: 0.5rem;
+        text-align: center;
+    }
+}
+
+#services .service img,
+.project-card img,
+.blog-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+button:hover {
+    background: #FFD700; /* Bright yellow background on hover */
+    color: black; /* Ensure text color remains readable */
+}
