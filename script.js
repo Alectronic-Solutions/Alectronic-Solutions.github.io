@@ -229,6 +229,57 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Change testimonial every 6 seconds
     setInterval(nextTestimonial, 6000);
+
+    // Add 3D effect to the hero title
+    const heroTitle = document.querySelector('.hero-title');
+    if (heroTitle) {
+        heroTitle.addEventListener('mousemove', (e) => {
+            const { offsetX, offsetY, target } = e;
+            const { offsetWidth, offsetHeight } = target;
+            const xPos = (offsetX / offsetWidth) - 0.5;
+            const yPos = (offsetY / offsetHeight) - 0.5;
+            heroTitle.style.transform = `rotateX(${yPos * 30}deg) rotateY(${xPos * 30}deg)`;
+        });
+
+        heroTitle.addEventListener('mouseleave', () => {
+            heroTitle.style.transform = 'rotateX(0) rotateY(0)';
+        });
+    }
+
+    let lastScrollTop = 0;
+    const header = document.querySelector("header");
+
+    window.addEventListener("scroll", function () {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollTop > lastScrollTop) {
+            // Scroll down
+            header.style.top = "-100px"; // Adjust as needed
+        } else {
+            // Scroll up
+            header.style.top = "0";
+        }
+        lastScrollTop = scrollTop;
+    });
+
+    // Back to Top Button
+    const backToTopButton = document.getElementById("backToTop");
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+            backToTopButton.style.display = "block";
+        } else {
+            backToTopButton.style.display = "none";
+        }
+    });
+
+    backToTopButton.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // Dark Mode Toggle Button
+    const darkModeToggle = document.getElementById("darkModeToggle");
+    darkModeToggle.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+    });
 });
 
 function toggleMenu() {

@@ -18,7 +18,7 @@
                     <img src="images/logo.png" alt="logo" style="height: 50px;">
                 </a>
             </div>
-            <h1 class="site-title">Alectronic Solutions</h1>
+            <h1 class="site-title"><a href="#hero">Alectronic Solutions</a></h1>
             <nav>
                 <div class="hamburger" onclick="toggleMenu()">
                     <div></div>
@@ -38,32 +38,32 @@
     </header>
     <div class="container main">
         <section id="hero">
-            <h1>Welcome to Alectronic Solutions</h1>
+            <h1 class="hero-title">Welcome to Alectronic Solutions</h1>
             <p>Your trusted partner for website design and dependable IT support services.</p>
             <button onclick="location.href='#portfolio'">Website Designs</button>
             <button onclick="location.href='#services'">IT Services</button>
         </section>
         <section id="services">
             <div class="service">
-                <img src="images/service1.jpg" alt="Website Design">
+                <img src="images/service1.jpg" alt="Website Design" onclick="document.querySelector('[data-modal-target=\'#modalWebsiteDesign\']').click();">
                 <h2>Website Design</h2>
                 <p>I create stunning and functional websites tailored to your needs.</p>
                 <button data-modal-target="#modalWebsiteDesign">Learn More</button>
             </div>
             <div class="service">
-                <img src="images/service2.jpg" alt="Virtual Assistance">
+                <img src="images/service2.jpg" alt="Virtual Assistance" onclick="document.querySelector('[data-modal-target=\'#modalVirtualAssistance\']').click();">
                 <h2>Virtual Assistance</h2>
                 <p>Our virtual assistants are here to help with your daily tasks.</p>
                 <button data-modal-target="#modalVirtualAssistance">Learn More</button>
             </div>
             <div class="service">
-                <img src="images/service3.jpg" alt="IT Support">
+                <img src="images/service3.jpg" alt="IT Support" onclick="document.querySelector('[data-modal-target=\'#modalITSupport\']').click();">
                 <h2>IT Support</h2>
                 <p>Reliable IT support to keep your business running smoothly.</p>
                 <button data-modal-target="#modalITSupport">Learn More</button>
             </div>
             <div class="service">
-                <img src="images/service4.jpg" alt="Cyber Security">
+                <img src="images/service4.jpg" alt="Cyber Security" onclick="document.querySelector('[data-modal-target=\'#modalCyberSecurity\']').click();">
                 <h2>Cyber Security</h2>
                 <p>Protect your business with our top-notch cyber security solutions.</p>
                 <button data-modal-target="#modalCyberSecurity">Learn More</button>
@@ -141,7 +141,7 @@
                     <li>Fast loading times</li>
                     <li>Easy content updates</li>
                 </ul>
-                <p><strong>Starting at $999</strong></p>
+                <p><strong>Starting at $99</strong></p>
                 <button onclick="location.href='#footer'; closeModal(document.getElementById('modalWebsiteDesign'))">Get Started</button>
             </div>
         </div>
@@ -209,19 +209,19 @@
         <section id="blog">
             <h1>Blog</h1>
             <div class="blog-card">
-                <img src="images/blog1.jpg" alt="Top 5 Website Design Trends to Watch in 2025">
+                <img src="images/blog1.jpg" alt="Top 5 Website Design Trends to Watch in 2025" onclick="document.querySelector('[data-modal-target=\'#modalBlog1\']').click();" style="cursor: pointer;">
                 <h2>Top 5 Website Design Trends to Watch in 2025</h2>
                 <p>Discover the latest web design trends for 2025, including dark mode, 3D elements, neumorphism, and AI-powered personalization.</p>
                 <button data-modal-target="#modalBlog1">Read More</button>
             </div>
             <div class="blog-card">
-                <img src="images/blog2.jpg" alt="Essential Cybersecurity Tips for Small Businesses">
+                <img src="images/blog2.jpg" alt="Essential Cybersecurity Tips for Small Businesses" onclick="document.querySelector('[data-modal-target=\'#modalBlog2\']').click();" style="cursor: pointer;">
                 <h2>Essential Cybersecurity Tips for Small Businesses</h2>
                 <p>Learn vital cybersecurity practices to protect your business from digital threats, including data encryption, employee training, and secure network setup.</p>
                 <button data-modal-target="#modalBlog2">Read More</button>
             </div>
             <div class="blog-card">
-                <img src="images/blog3.jpg" alt="Maximizing IT Support Efficiency">
+                <img src="images/blog3.jpg" alt="Maximizing IT Support Efficiency" onclick="document.querySelector('[data-modal-target=\'#modalBlog3\']').click();" style="cursor: pointer;">
                 <h2>Maximizing IT Support Efficiency</h2>
                 <p>Discover strategies to streamline your IT support processes, reduce downtime, and improve overall system performance for your business.</p>
                 <button data-modal-target="#modalBlog3">Read More</button>
@@ -277,19 +277,19 @@
         <section id="projects" class="projects">
             <h1>Projects</h1>
             <div class="project-card">
-                <img src="images/project1.jpg" alt="Custom PC Build">
+                <img src="images/project1.jpg" alt="Custom PC Build" onclick="document.querySelector('[data-modal-target=\'#modalProject1\']').click();" style="cursor: pointer;">
                 <h2>Custom PC Build</h2>
                 <p>A high-performance gaming PC meticulously crafted for enthusiasts seeking top-tier performance. Featuring a custom water cooling loop, RGB lighting, and cutting-edge components, this build is designed to handle anything.</p>
                 <button data-modal-target="#modalProject1">View Details</button>
             </div>
             <div class="project-card">
-                <img src="images/project2.jpg" alt="Virtual Comedy Platform">
+                <img src="images/project2.jpg" alt="Virtual Comedy Platform" onclick="document.querySelector('[data-modal-target=\'#modalProject2\']').click();" style="cursor: pointer;">
                 <h2>Virtual Comedy Platform</h2>
                 <p>A revolutionary platform that brings live comedy shows to a global audience. With real-time audience interaction, digital ticketing, and advanced moderation tools, this platform empowers comedians to connect with fans like never before.</p>
                 <button data-modal-target="#modalProject2">View Details</button>
             </div>
             <div class="project-card">
-                <img src="images/project3.jpg" alt="Hand Coded Website">
+                <img src="images/project3.jpg" alt="Hand Coded Website" onclick="document.querySelector('[data-modal-target=\'#modalProject3\']').click();" style="cursor: pointer;">
                 <h2>Hand Coded Website</h2>
                 <p>A fully custom website developed from the ground up using HTML, CSS, and JavaScript. Designed for optimal performance and responsiveness, this project showcases clean code practices and modern design principles.</p>
                 <button data-modal-target="#modalProject3">View Details</button>
@@ -461,6 +461,13 @@
             </div>
         </div>
     </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" title="Back to Top">&#8679;</button>
+
+    <!-- Dark Mode Toggle Button -->
+    <button id="darkModeToggle" title="Toggle Dark Mode">&#9790;</button>
+
     <script src="script.js"></script>
 </body>
 </html>
