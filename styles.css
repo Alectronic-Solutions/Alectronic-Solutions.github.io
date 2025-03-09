@@ -157,8 +157,79 @@ nav:hover {
 /* Hero section styling */
 #hero {
     text-align: center;
-    padding: 2rem 0;
-    background: rgba(255, 255, 255, 0);
+    padding: 4rem 0;
+    background: none !important; /* No background */
+    border: none !important; /* No border */
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+#hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    animation: fadeInDown 1s ease-in-out;
+    color: #FFD700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#hero p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    animation: fadeInUp 1s ease-in-out;
+    color: white;
+}
+
+.hero-button {
+    margin: 0 0.5rem;
+    background: orange;
+    color: black;
+    font-weight: bold;
+    border: none;
+    padding: 15px 25px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    transition: background 0.3s ease, transform 0.3s ease;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.hero-button:hover {
+    background: #FFD700;
+    color: black;
+    transform: scale(1.1);
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 #hero h1 {
@@ -219,9 +290,16 @@ nav:hover {
 section {
     padding: 20px;
     margin: 20px;
-    background: white;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background: none !important; /* No background */
+    border: none !important; /* No border */
+    box-shadow: none !important; /* No shadow */
+    animation: fadeIn 0.5s ease-in-out; /* Faster animation */
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out; /* Faster transition */
+}
+
+section.in-view {
+    opacity: 1;
 }
 
 /* Services section styling */
@@ -236,30 +314,38 @@ section {
 }
 
 #services .service {
-    flex: 1 1 calc(50% - 2rem); /* Ensure 50% width for two per row */
+    flex: 1 1 calc(40% - 2rem); /* Adjust width to be smaller */
     margin: 1rem;
     background: none;
-    border: 2px solid rgba(255, 255, 255, 0.5);
+    border: none; /* Remove border */
     border-radius: 5px;
     box-shadow: none;
     padding: 1rem;
     text-align: center;
-    max-width: 300px;
+    max-width: 220px; /* Adjust max-width */
     color: white;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%; /* Ensure all cards have the same height */
+    height: auto; /* Adjust height */
+    animation: slideIn 0.5s ease-in-out; /* Faster animation */
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out; /* Faster transition */
+}
+
+#services .service.in-view {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 #services .service img {
     width: 100%;
-    height: 200px; /* Fixed height for all images */
-    object-fit: cover; /* Ensure images cover the area */
+    height: 140px; /* Adjust height for images */
+    object-fit: cover;
     border-radius: 5px;
     margin-bottom: 1rem;
-    cursor: pointer; /* Change cursor to pointer */
-    transition: transform 0.3s ease; /* Add transition for hover effect */
+    cursor: pointer;
+    transition: transform 0.3s ease;
 }
 
 #services .service img:hover {
@@ -267,13 +353,13 @@ section {
 }
 
 #services .service h2 {
-    font-size: 1.5rem;
+    font-size: 1.2rem; /* Adjust font size */
     margin-bottom: 0.5rem;
     color: #FFD700; /* Change to brighter yellow */
 }
 
 #services .service p {
-    font-size: 1rem;
+    font-size: 0.9rem; /* Adjust font size */
     margin-bottom: 1rem;
     flex-grow: 1; /* Allow the paragraph to grow and fill space */
 }
@@ -300,7 +386,7 @@ section {
 
 /* Projects section styling */
 .projects {
-    padding: 2rem 0;
+    padding: 2rem 0; /* Adjust padding */
     background: none; /* No background color */
     text-align: center; /* Center the content */
     display: flex; /* Display cards in a row */
@@ -317,27 +403,54 @@ section {
 }
 
 .project-card {
-    flex: 1 1 calc(33% - 2rem); /* Ensure 3 cards per row */
+    flex: 1 1 calc(30% - 2rem); /* Adjust width to fit better on screen */
     margin: 1rem;
     background: none;
-    border: 2px solid rgba(255, 255, 255, 0.5);
+    border: none; /* Remove border */
     border-radius: 5px;
     box-shadow: none;
     padding: 1rem;
     text-align: center;
-    max-width: 300px;
+    max-width: 250px; /* Adjust max-width */
     color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: auto; /* Adjust height */
+    animation: zoomIn 0.5s ease-in-out; /* Faster animation */
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out; /* Faster transition */
+}
+
+.project-card.in-view {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.project-card img {
+    width: 100%;
+    height: 140px; /* Adjust height for images */
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.project-card img:hover {
+    transform: scale(1.05); /* Scale up on hover */
 }
 
 .project-card h2 {
-    font-size: 1.5rem;
+    font-size: 1.2rem; /* Adjust font size */
     margin-bottom: 0.5rem;
     color: #FFD700; /* Change to brighter yellow */
 }
 
 .project-card p {
-    font-size: 1rem;
+    font-size: 0.9rem; /* Adjust font size */
     margin-bottom: 1rem;
+    flex-grow: 1; /* Allow the paragraph to grow and fill space */
 }
 
 .project-card button {
@@ -371,7 +484,7 @@ section {
 /* Blog section styling */
 #blog {
     text-align: center;
-    padding: 40px 20px;
+    padding: 2rem 0; /* Adjust padding */
     background: none; /* No background color */
     display: flex; /* Display cards in a row */
     flex-wrap: wrap; /* Wrap cards to the next line if necessary */
@@ -387,369 +500,53 @@ section {
 }
 
 .blog-card {
-    flex: 1 1 calc(33% - 2rem); /* Ensure 3 cards per row */
+    flex: 1 1 calc(30% - 2rem); /* Adjust width to fit better on screen */
     margin: 1rem;
     background: none;
-    border: 2px solid rgba(255, 255, 255, 0.5);
+    border: none; /* Remove border */
     border-radius: 5px;
     box-shadow: none;
     padding: 1rem;
     text-align: center;
-    max-width: 300px;
+    max-width: 250px; /* Adjust max-width */
     color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: auto; /* Adjust height */
+    animation: fadeIn 0.5s ease-in-out; /* Faster animation */
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out; /* Faster transition */
 }
 
-.blog-card h2 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-    color: #FFD700; /* Change to brighter yellow */
-}
-
-.blog-card p {
-    font-size: 1rem;
-    margin-bottom: 1rem;
-}
-
-.blog-card button {
-    margin: 0.5rem;
-    background: orange;
-    color: black;
-    font-weight: bold;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    border-radius: 5px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    transition: background 0.3s ease, transform 0.3s ease;
-}
-
-.blog-card button:hover {
-    background: #FFD700; /* Bright yellow background on hover */
-    color: black; /* Ensure text color remains readable */
-    transform: scale(1.05);
+.blog-card.in-view {
+    opacity: 1;
 }
 
 .blog-card img {
-    cursor: pointer; /* Change cursor to pointer */
-}
-
-/* Modal styling for blog section */
-.blog-modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    max-width: 600px;
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
-    background: linear-gradient(
-        145deg,
-        rgba(128, 128, 128, 0.9) 0%,
-        rgba(64, 64, 64, 0.9) 100%
-    );
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    overflow: hidden; /* Ensure content doesn't overflow */
-}
-
-.blog-modal.active {
-    display: block;
-}
-
-.blog-modal-content {
-    padding: 20px; /* Increased padding for better spacing */
-    text-align: center;
-    color: white;
-}
-
-.blog-modal-content h2 {
-    font-size: 1.6rem; /* Increased font size */
-    margin: 0 0 15px 0; /* Adjusted margin */
-    color: #FFD700;
-}
-
-.blog-modal-content p {
-    font-size: 1rem; /* Increased font size */
-    line-height: 1.6; /* Increased line height for better readability */
-    margin: 0 0 15px 0; /* Adjusted margin */
-}
-
-.blog-modal-content ul {
-    text-align: left;
-    padding-left: 20px;
-    margin: 15px 0; /* Adjusted margin */
-    font-size: 0.95rem; /* Increased font size */
-}
-
-.blog-modal-content li {
-    margin-bottom: 10px; /* Increased margin */
-}
-
-.blog-modal-content button {
-    margin-top: 15px; /* Increased margin */
-    padding: 10px 25px; /* Increased padding */
-    font-size: 1rem; /* Increased font size */
-    background: orange;
-    color: black;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    transition: background 0.3s ease, transform 0.3s ease;
-    cursor: pointer;
-}
-
-.blog-modal-content button:hover {
-    background: #FFD700; /* Bright yellow background on hover */
-    color: black; /* Ensure text color remains readable */
-    transform: scale(1.05);
-}
-
-/* Portfolio section styling */
-#portfolio {
-    background: none; /* No background color */
-    padding: 20px;
-    margin: 20px;
-    text-align: center; /* Center the content */
-}
-
-#portfolio h1 {
-    color: #FFD700; /* Yellow color for the title */
-    font-size: 2rem;
-    margin-bottom: 1rem;
-}
-
-#portfolio .icon-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px; /* Space between icons */
-}
-
-#portfolio .icon-placeholder {
-    width: 100px; /* Increased from 80px */
-    height: 100px; /* Increased from 80px */
-    background: none; /* No background for icons */
-    border: none; /* Remove border for actual images */
-    border-radius: 50%;
-    transition: transform 0.3s ease;
-    cursor: pointer; /* Change cursor to hand */
-}
-
-#portfolio .icon-placeholder img {
     width: 100%;
-    height: 100%;
-    border-radius: 50%;
-}
-
-#portfolio .icon-placeholder:hover {
-    transform: scale(1.1); /* Hover effect */
-}
-
-@media (max-width: 600px) {
-    #portfolio .icon-placeholder {
-        width: 80px; /* Smaller size for mobile */
-        height: 80px; /* Smaller size for mobile */
-    }
-}
-
-/* About section styling */
-#about {
-    padding: 40px 20px;
-    text-align: center;
-    background: none; /* No background color */
-}
-
-#about h1 {
-    color: #FFD700; /* Yellow color for the title */
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-.about-content {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: left;
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: white; /* Change text color to white */
-}
-
-.about-content p {
-    margin-bottom: 20px;
-}
-
-.about-logo {
-    display: block;
-    margin: 20px auto 0; /* Move logo to the bottom */
-    height: 100px; /* Make the logo bigger */
-    transition: transform 0.3s ease;
-    cursor: pointer; /* Change cursor to hand */
-}
-
-.about-logo:hover {
-    animation: spin 1s linear infinite; /* Continuous spin animation */
-}
-
-.about-logo.shoot {
-    animation: shootOff 4s ease-in-out; /* Shoot off to the right and come back */
-}
-
-@keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-@keyframes shootOff {
-    0% {
-        transform: translateX(0);
-    }
-    25% {
-        transform: translateX(100vw); /* Move off the right side of the page */
-    }
-    50% {
-        transform: translateX(-100vw); /* Move off the left side of the page */
-    }
-    75% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(0);
-    }
-}
-
-.about-logo.flip {
-    animation: flip 1s linear; /* Flip vertically on click */
-}
-
-@keyframes flip {
-    from {
-        transform: rotateX(0deg);
-    }
-    to {
-        transform: rotateX(360deg);
-    }
-}
-
-.about-logo.flip {
-    animation: flip 1s linear; /* Flip horizontally on click */
-}
-
-@keyframes flip {
-    from {
-        transform: rotateY(0deg);
-    }
-    to {
-        transform: rotateY(360deg);
-    }
-}
-
-.about-logo.spin {
-    animation: spinOnce 1s linear; /* Spin 360 degrees on click */
-}
-
-@keyframes spinOnce {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-.about-logo.bounce {
-    animation: bounce 6s ease-in-out; /* Slower bounce animation on click */
-}
-
-@keyframes bounce {
-    0% {
-        transform: translateX(0) translateY(0);
-    }
-    20% {
-        transform: translateX(20vw) translateY(-50px); /* Bounce up */
-    }
-    40% {
-        transform: translateX(40vw) translateY(0); /* Bounce down */
-    }
-    60% {
-        transform: translateX(60vw) translateY(-50px); /* Bounce up */
-    }
-    80% {
-        transform: translateX(80vw) translateY(0); /* Bounce down */
-    }
-    100% {
-        transform: translateX(100vw) translateY(0); /* Move off the right side of the page */
-    }
-    120% {
-        transform: translateX(-100vw) translateY(0); /* Move off the left side of the page */
-    }
-    140% {
-        transform: translateX(0) translateY(0); /* Back to center */
-    }
-}
-
-.about-logo.flip-vertical {
-    animation: flipVertical 1s linear; /* Flip vertically on click */
-}
-
-@keyframes flipVertical {
-    from {
-        transform: rotateX(0deg);
-    }
-    to {
-        transform: rotateX(360deg);
-    }
-}
-
-/* Blog section styling */
-#blog {
-    text-align: center;
-    padding: 40px 20px;
-    background: none; /* No background color */
-    display: flex; /* Display cards in a row */
-    flex-wrap: wrap; /* Wrap cards to the next line if necessary */
-    justify-content: center; /* Center the cards horizontally */
-    gap: 1rem; /* Space between cards */
-}
-
-#blog h1 {
-    width: 100%; /* Ensure the title takes full width */
-    color: #FFD700; /* Yellow color for the title */
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-.blog-card {
-    flex: 1 1 calc(33% - 2rem); /* Ensure 3 cards per row */
-    margin: 1rem;
-    background: none;
-    border: 2px solid rgba(255, 255, 255, 0.5);
+    height: 140px; /* Adjust height for images */
+    object-fit: cover;
     border-radius: 5px;
-    box-shadow: none;
-    padding: 1rem;
-    text-align: center;
-    max-width: 300px;
-    color: white;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.blog-card img:hover {
+    transform: scale(1.05); /* Scale up on hover */
 }
 
 .blog-card h2 {
-    font-size: 1.5rem;
+    font-size: 1.2rem; /* Adjust font size */
     margin-bottom: 0.5rem;
     color: #FFD700; /* Change to brighter yellow */
 }
 
 .blog-card p {
-    font-size: 1rem;
+    font-size: 0.9rem; /* Adjust font size */
     margin-bottom: 1rem;
+    flex-grow: 1; /* Allow the paragraph to grow and fill space */
 }
 
 .blog-card button {
@@ -930,6 +727,11 @@ footer {
     color: #fff;
     padding: 2rem 0;
     text-align: center;
+    opacity: 1; /* Ensure footer is always visible */
+    transition: none; /* Remove transition */
+    position: relative; /* Ensure footer is positioned correctly */
+    bottom: 0; /* Stick footer to the bottom */
+    width: 100%; /* Full width */
 }
 
 .footer-container {
@@ -1120,6 +922,90 @@ footer {
     }
 }
 
+/* Mobile styles */
+@media (max-width: 600px) {
+    .hamburger {
+        display: flex;
+    }
+
+    nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 1rem;
+        width: calc(100% - 40px);
+        align-items: flex-end; /* Align links to the right side */
+    }
+
+    nav ul.active {
+        display: flex;
+    }
+
+    nav ul li {
+        margin-bottom: 1rem;
+        text-align: right; /* Align text to the right */
+    }
+
+    nav ul li:last-child {
+        margin-bottom: 0;
+    }
+
+    nav ul li:first-child a {
+        background-color: transparent; /* Completely transparent background for Home link */
+        color: transparent; /* Completely transparent text color for Home link */
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+    }
+
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    header .site-title {
+        font-size: 1.5rem;
+        margin-top: 0.5rem;
+    }
+
+    nav ul {
+        width: calc(100% - 40px);
+    }
+
+    nav ul li {
+        text-align: right; /* Align text to the right */
+    }
+
+    .header-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header .site-title {
+        font-size: 1.5rem;
+        margin-top: 0.5rem;
+        text-align: center;
+    }
+
+    #services .service,
+    .project-card {
+        flex: 1 1 calc(100% - 2rem); /* Full width on mobile */
+        max-width: 100%;
+    }
+
+    #portfolio .icon-placeholder {
+        width: 80px; /* Smaller size for mobile */
+        height: 80px; /* Smaller size for mobile */
+    }
+}
+
+.footer-logo a:hover {
+    color: #FFD700; /* Yellow color on hover */
+}
+
 /* Modal styling */
 .modal {
     display: none;
@@ -1240,10 +1126,13 @@ footer {
     box-shadow: none; /* No shadow */
     text-align: center;
     color: white;
+    animation: fadeIn 0.5s ease-in-out; /* Faster animation */
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out; /* Faster transition */
 }
 
-.testimonial.active {
-    display: block;
+.testimonial.in-view {
+    opacity: 1;
 }
 
 .testimonial p {
@@ -1486,4 +1375,219 @@ body.dark-mode #services .service button {
 
 body.dark-mode #services .service button:hover {
     background-color: #555;
+}
+
+/* Portfolio section styling */
+#portfolio {
+    background: none; /* No background color */
+    padding: 2rem 0; /* Adjust padding */
+    margin: 20px;
+    text-align: center; /* Center the content */
+}
+
+#portfolio h1 {
+    color: #FFD700; /* Yellow color for the title */
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+#portfolio .icon-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem; /* Space between icons */
+}
+
+#portfolio .icon-placeholder {
+    width: 100px; /* Adjust size */
+    height: 100px; /* Adjust size */
+    background: none; /* No background for icons */
+    border: none; /* Remove border for actual images */
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    cursor: pointer; /* Change cursor to hand */
+    animation: slideIn 0.5s ease-in-out; /* Faster animation */
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out; /* Faster transition */
+}
+
+#portfolio .icon-placeholder.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#portfolio .icon-placeholder img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+#portfolio .icon-placeholder:hover {
+    transform: scale(1.1); /* Hover effect */
+}
+
+@media (max-width: 600px) {
+    #portfolio .icon-placeholder {
+        width: 80px; /* Smaller size for mobile */
+        height: 80px; /* Smaller size for mobile */
+    }
+}
+
+/* About section styling */
+#about {
+    padding: 2rem 0; /* Adjust padding */
+    text-align: center;
+    background: none; /* No background color */
+    animation: fadeIn 0.5s ease-in-out; /* Faster animation */
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out; /* Faster transition */
+}
+
+#about.in-view {
+    opacity: 1;
+}
+
+#about h1 {
+    color: #FFD700; /* Yellow color for the title */
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: white; /* Change text color to white */
+}
+
+.about-content p {
+    margin-bottom: 20px;
+}
+
+.about-logo {
+    display: block;
+    margin: 20px auto 0; /* Move logo to the bottom */
+    height: 100px; /* Make the logo bigger */
+    transition: transform 0.3s ease;
+    cursor: pointer; /* Change cursor to hand */
+}
+
+.about-logo:hover {
+    animation: spin 1s linear infinite; /* Continuous spin animation */
+}
+
+.about-logo.shoot {
+    animation: shootOff 4s ease-in-out; /* Shoot off to the right and come back */
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes shootOff {
+    0% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(100vw); /* Move off the right side of the page */
+    }
+    50% {
+        transform: translateX(-100vw); /* Move off the left side of the page */
+    }
+    75% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.about-logo.flip {
+    animation: flip 1s linear; /* Flip vertically on click */
+}
+
+@keyframes flip {
+    from {
+        transform: rotateX(0deg);
+    }
+    to {
+        transform: rotateX(360deg);
+    }
+}
+
+.about-logo.flip {
+    animation: flip 1s linear; /* Flip horizontally on click */
+}
+
+@keyframes flip {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(360deg);
+    }
+}
+
+.about-logo.spin {
+    animation: spinOnce 1s linear; /* Spin 360 degrees on click */
+}
+
+@keyframes spinOnce {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.about-logo.bounce {
+    animation: bounce 6s ease-in-out; /* Slower bounce animation on click */
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateX(0) translateY(0);
+    }
+    20% {
+        transform: translateX(20vw) translateY(-50px); /* Bounce up */
+    }
+    40% {
+        transform: translateX(40vw) translateY(0); /* Bounce down */
+    }
+    60% {
+        transform: translateX(60vw) translateY(-50px); /* Bounce up */
+    }
+    80% {
+        transform: translateX(80vw) translateY(0); /* Bounce down */
+    }
+    100% {
+        transform: translateX(100vw) translateY(0); /* Move off the right side of the page */
+    }
+    120% {
+        transform: translateX(-100vw) translateY(0); /* Move off the left side of the page */
+    }
+    140% {
+        transform: translateX(0) translateY(0); /* Back to center */
+    }
+}
+
+.about-logo.flip-vertical {
+    animation: flipVertical 1s linear; /* Flip vertically on click */
+}
+
+@keyframes flipVertical {
+    from {
+        transform: rotateX(0deg);
+    }
+    to {
+        transform: rotateX(360deg);
+    }
 }
