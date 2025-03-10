@@ -1000,6 +1000,71 @@ footer {
         width: 80px; /* Smaller size for mobile */
         height: 80px; /* Smaller size for mobile */
     }
+
+    /* Adjust container width for mobile */
+    .container {
+        width: 95%;
+        padding-top: 60px;
+    }
+
+    /* Adjust section spacing for mobile */
+    section {
+        padding: 10px;
+        margin: 10px;
+    }
+
+    /* Adjust blog cards for mobile */
+    .blog-card {
+        flex: 1 1 100%;
+        max-width: 100%;
+        margin: 0.5rem 0;
+    }
+
+    /* Ensure service cards are visible */
+    #services .service {
+        opacity: 1;
+        transform: none;
+        margin: 0.5rem 0;
+    }
+
+    /* Ensure project cards are visible */
+    .project-card {
+        opacity: 1;
+        transform: none;
+        margin: 0.5rem 0;
+    }
+
+    /* Adjust hero section for mobile */
+    #hero {
+        padding: 2rem 0;
+    }
+
+    #hero h1 {
+        font-size: 2rem;
+    }
+
+    #hero p {
+        font-size: 1rem;
+    }
+
+    /* Adjust testimonials for mobile */
+    .testimonial {
+        opacity: 1;
+        padding: 10px;
+    }
+
+    /* Ensure all sections are visible on mobile */
+    section,
+    .service,
+    .project-card,
+    .blog-card,
+    .icon-placeholder,
+    #about,
+    .testimonial {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+    }
 }
 
 .footer-logo a:hover {
