@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="icon" href="images/logo.png" type="image/png">
+    <!-- Google Search Console Verification -->
+    <meta name="google-site-verification" content="your-verification-code-from-google" />
+    <!-- Google Site Verification -->
+    <meta name="google-site-verification" content="your-verification-code">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-VMEG3ETL2X"></script>
     <script>
@@ -16,7 +20,25 @@
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('config', 'G-VMEG3ETL2X');
+        // Enhanced measurement settings
+        gtag('config', 'G-VMEG3ETL2X', {
+            'send_page_view': true,
+            'page_title': document.title,
+            'page_location': window.location.href,
+            'cookie_domain': 'alectronic-solutions.github.io',
+            'allow_google_signals': true,
+            'allow_ad_personalization_signals': true
+        });
+
+        // Track outbound links
+        document.addEventListener('click', function(e) {
+            if (e.target.tagName === 'A' && e.target.href.indexOf(location.hostname) === -1) {
+                gtag('event', 'click', {
+                    'event_category': 'outbound',
+                    'event_label': e.target.href
+                });
+            }
+        });
     </script>
 </head>
 <body>
