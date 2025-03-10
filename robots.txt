@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://alectronic-solutions.github.io/sitemap.xml
