@@ -53,111 +53,140 @@
             </div>
             <h1 class="site-title"><a href="#hero">Alectronic Solutions</a></h1>
             <nav>
-                <div class="hamburger" onclick="toggleMenu()">
+                <div class="hamburger">
                     <div></div>
                     <div></div>
                     <div></div>
                 </div>
                 <ul>
-                    <li><a href="#hero" onclick="toggleMenu()">Home</a></li>
-                    <li><a href="#about" onclick="toggleMenu()">About</a></li>
-                    <li><a href="#blog" onclick="toggleMenu()">Blog</a></li>
-                    <li><a href="#services" onclick="toggleMenu()">Services</a></li>
-                    <li><a href="#portfolio" onclick="toggleMenu()">Portfolio</a></li>
-                    <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#projects">Projects</a></li>
                 </ul>
             </nav>
         </div>
     </header>
     <div class="container main">
-        <section id="hero">
-            <h1 class="hero-title">Welcome to Alectronic Solutions</h1>
-            <p>Your trusted partner for website design and dependable IT support services.</p>
-            <button class="hero-button" onclick="location.href='#portfolio'">Website Designs</button>
-            <button class="hero-button" onclick="location.href='#services'">IT Services</button>
+        <section id="hero-consultation">
+            <div class="hero-content">
+                <h1 class="hero-title">Welcome to Alectronic Solutions</h1>
+                <p>Your trusted partner for website design and dependable IT support services. Let us help you achieve your digital goals with cutting-edge solutions tailored to your needs.</p>
+                <div class="hero-buttons">
+                    <button class="hero-button" onclick="location.href='#portfolio'">Explore Portfolio</button>
+                    <button class="hero-button" onclick="location.href='#services'">Discover Services</button>
+                </div>
+            </div>
+            <div class="consultation-content">
+                <h2>Free Consultation - Take the First Step</h2>
+                <p>Not sure where to start? Get expert IT guidance without any cost or obligation.</p>
+                <div class="consultation-features">
+                    <div class="feature">
+                        <i class="fas fa-clock"></i>
+                        <span>Quick Response within 24 Hours</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-dollar-sign"></i>
+                        <span>$0 Initial Consultation</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-handshake"></i>
+                        <span>No Obligation</span>
+                    </div>
+                </div>
+                <button onclick="location.href='mailto:alecit.b101@gmail.com'" class="cta-button">
+                    Request Free Consultation
+                </button>
+            </div>
         </section>
+
         <section id="services">
-            <div class="service">
-                <img src="images/service1.jpg" alt="Website Design" onclick="document.querySelector('[data-modal-target=\'#modalWebsiteDesign\']').click();">
-                <h2>Website Design</h2>
-                <p>I create stunning and functional websites tailored to your needs.</p>
-                <button data-modal-target="#modalWebsiteDesign">Learn More</button>
-            </div>
-            <div class="service">
-                <img src="images/service2.jpg" alt="Virtual Assistance" onclick="document.querySelector('[data-modal-target=\'#modalVirtualAssistance\']').click();">
-                <h2>Virtual Assistance</h2>
-                <p>Our virtual assistants are here to help with your daily tasks.</p>
-                <button data-modal-target="#modalVirtualAssistance">Learn More</button>
-            </div>
-            <div class="service">
-                <img src="images/service3.jpg" alt="IT Support" onclick="document.querySelector('[data-modal-target=\'#modalITSupport\']').click();">
-                <h2>IT Support</h2>
-                <p>Reliable IT support to keep your business running smoothly.</p>
-                <button data-modal-target="#modalITSupport">Learn More</button>
-            </div>
-            <div class="service">
-                <img src="images/service4.jpg" alt="Cyber Security" onclick="document.querySelector('[data-modal-target=\'#modalCyberSecurity\']').click();">
-                <h2>Cyber Security</h2>
-                <p>Protect your business with our top-notch cyber security solutions.</p>
-                <button data-modal-target="#modalCyberSecurity">Learn More</button>
+            <h1 class="section-title">Our Services</h1>
+            <div class="services-container">
+                <div class="service">
+                    <img src="images/service1.jpg" alt="Website Design" data-modal-target="#modalWebsiteDesign">
+                    <h2>Website Design</h2>
+                    <p>I create stunning and functional websites tailored to your needs.</p>
+                    <button data-modal-target="#modalWebsiteDesign">Learn More</button>
+                </div>
+                <div class="service">
+                    <img src="images/service2.jpg" alt="Virtual Assistance" data-modal-target="#modalVirtualAssistance">
+                    <h2>Virtual Assistance</h2>
+                    <p>Our virtual assistants are here to help with your daily tasks.</p>
+                    <button data-modal-target="#modalVirtualAssistance">Learn More</button>
+                </div>
+                <div class="service">
+                    <img src="images/service3.jpg" alt="IT Support" data-modal-target="#modalITSupport">
+                    <h2>IT Support</h2>
+                    <p>Reliable IT support to keep your business running smoothly.</p>
+                    <button data-modal-target="#modalITSupport">Learn More</button>
+                </div>
+                <div class="service">
+                    <img src="images/service4.jpg" alt="Cyber Security" data-modal-target="#modalCyberSecurity">
+                    <h2>Cyber Security</h2>
+                    <p>Protect your business with our top-notch cyber security solutions.</p>
+                    <button data-modal-target="#modalCyberSecurity">Learn More</button>
+                </div>
             </div>
         </section>
 
         <section id="portfolio">
             <h1>Portfolio</h1>
             <div class="icon-container">
-                <div class="icon-placeholder" onclick="openIframe('https://alectronic-solutions.github.io/Pawfect-Pets/')">
+                <div class="icon-placeholder" data-title="Pawfect Pets" onclick="openIframe('https://alectronic-solutions.github.io/Pawfect-Pets/')">
                     <img src="images/portfolio-1.png" alt="Pawfect Pets Portfolio">
                 </div>
-                <div class="icon-placeholder" onclick="openIframe('https://alectronic-solutions.github.io/Luxe-Beauty-Lounge/')">
+                <div class="icon-placeholder" data-title="Luxe Beauty Lounge" onclick="openIframe('https://alectronic-solutions.github.io/Luxe-Beauty-Lounge/')">
                     <img src="images/portfolio-2.png" alt="Portfolio 2">
                 </div>
-                <div class="icon-placeholder" onclick="openIframe('https://alectronic-solutions.github.io/Vitality-Fitness/')">
+                <div class="icon-placeholder" data-title="Vitality Fitness" onclick="openIframe('https://alectronic-solutions.github.io/Vitality-Fitness/')">
                     <img src="images/portfolio-3.png" alt="Portfolio 3">
                 </div>
-                <div class="icon-placeholder" onclick="openIframe('https://alectronic-solutions.github.io/Grace-Haven-Church/')">
+                <div class="icon-placeholder" data-title="Grace Haven Church" onclick="openIframe('https://alectronic-solutions.github.io/Grace-Haven-Church/')">
                     <img src="images/portfolio-4.png" alt="Portfolio 4">
                 </div>
-                <div class="icon-placeholder" onclick="openIframe('https://alectronic-solutions.github.io/Coastal-Horizon-Hotel/')">
+                <div class="icon-placeholder" data-title="Coastal Horizon Hotel" onclick="openIframe('https://alectronic-solutions.github.io/Coastal-Horizon-Hotel/')">
                     <img src="images/portfolio-5.png" alt="Portfolio 5">
                 </div>
-                <div class="icon-placeholder" onclick="openIframe('https://alectronic-solutions.github.io/Precision-Attorneys/')">
+                <div class="icon-placeholder" data-title="Precision Attorneys" onclick="openIframe('https://alectronic-solutions.github.io/Precision-Attorneys/')">
                     <img src="images/portfolio-6.png" alt="Portfolio 6">
                 </div>
-                <div class="icon-placeholder" onclick="openIframe('https://alectronic-solutions.github.io/Nomad-Escapes/')">
+                <div class="icon-placeholder" data-title="Nomad Escapes" onclick="openIframe('https://alectronic-solutions.github.io/Nomad-Escapes/')">
                     <img src="images/portfolio-7.png" alt="Portfolio 7">
                 </div>
-                <div class="icon-placeholder" onclick="openIframe('https://alectronic-solutions.github.io/PodWave-Studios/')">
+                <div class="icon-placeholder" data-title="PodWave Studios" onclick="openIframe('https://alectronic-solutions.github.io/PodWave-Studios/')">
                     <img src="images/portfolio-8.png" alt="Portfolio 8">
                 </div>
-                <div class="icon-placeholder" onclick="openIframe('https://alectronic-solutions.github.io/Virtual-Learning-Hub/')">
+                <div class="icon-placeholder" data-title="Virtual Learning Hub" onclick="openIframe('https://alectronic-solutions.github.io/Virtual-Learning-Hub/')">
                     <img src="images/portfolio-9.png" alt="Portfolio 9">
                 </div>
-                <div class="icon-placeholder" onclick="openIframe('https://alectronic-solutions.github.io/Online-Store/')">
+                <div class="icon-placeholder" data-title="Online Store" onclick="openIframe('https://alectronic-solutions.github.io/Online-Store/')">
                     <img src="images/portfolio-10.png" alt="Portfolio 10">
                 </div>
-                <div class="icon-placeholder" onclick="openIframe('https://alectronic-solutions.github.io/Pasta-Place/')">
+                <div class="icon-placeholder" data-title="Pasta Place" onclick="openIframe('https://alectronic-solutions.github.io/Pasta-Place/')">
                     <img src="images/portfolio-11.png" alt="Portfolio 11">
                 </div>
-                <div class="icon-placeholder" onclick="openIframe('https://alectronic-solutions.github.io/Laughtron-3000/')">
+                <div class="icon-placeholder" data-title="Laughtron 3000" onclick="openIframe('https://alectronic-solutions.github.io/Laughtron-3000/')">
                     <img src="images/portfolio-12.png" alt="Portfolio 12">
                 </div>
-                <div class="icon-placeholder" onclick="openIframe('https://alectronic-solutions.github.io/Strength-Together/')">
+                <div class="icon-placeholder" data-title="Strength Together" onclick="openIframe('https://alectronic-solutions.github.io/Strength-Together/')">
                     <img src="images/portfolio-13.png" alt="Portfolio 13">
                 </div>
-                <div class="icon-placeholder" onclick="openIframe('https://alectronic-solutions.github.io/Elite-Auto-Center/')">
+                <div class="icon-placeholder" data-title="Elite Auto Center" onclick="openIframe('https://alectronic-solutions.github.io/Elite-Auto-Center/')">
                     <img src="images/portfolio-14.png" alt="Portfolio 14">
                 </div>
-                <div class="icon-placeholder" onclick="openIframe('https://alectronic-solutions.github.io/Rock-Band/')">
+                <div class="icon-placeholder" data-title="Rock Band" onclick="openIframe('https://alectronic-solutions.github.io/Rock-Band/')">
                     <img src="images/portfolio-15.png" alt="Portfolio 15">
                 </div>
-                <div class="icon-placeholder" onclick="openIframe('https://alectronic-solutions.github.io/Prime-Cuts-Barber-Shop/')">
+                <div class="icon-placeholder" data-title="Prime Cuts Barber Shop" onclick="openIframe('https://alectronic-solutions.github.io/Prime-Cuts-Barber-Shop/')">
                     <img src="images/portfolio-16.png" alt="Portfolio 16">
                 </div>
-                <div class="icon-placeholder" onclick="openIframe('https://alectronic-solutions.github.io/Vintage-Antiques/')">
+                <div class="icon-placeholder" data-title="Vintage Antiques" onclick="openIframe('https://alectronic-solutions.github.io/Vintage-Antiques/')">
                     <img src="images/portfolio-17.png" alt="Portfolio 17">
                 </div>
-                <div class="icon-placeholder" onclick="openIframe('https://www.virtualcomedy.net/')">
+                <div class="icon-placeholder" data-title="Virtual Comedy" onclick="openIframe('https://www.virtualcomedy.net/')">
                     <img src="images/portfolio-18.png" alt="Portfolio 18">
                 </div>
             </div>
@@ -175,7 +204,7 @@
                     <li>Easy content updates</li>
                 </ul>
                 <p><strong>Starting at $99</strong></p>
-                <button onclick="location.href='#footer'; closeModal(document.getElementById('modalWebsiteDesign'))">Get Started</button>
+                <button data-close-button>Get Started</button>
             </div>
         </div>
 
@@ -190,7 +219,7 @@
                     <li>Social media management</li>
                 </ul>
                 <p><strong>Starting at $45/hour</strong></p>
-                <button onclick="location.href='#footer'; closeModal(document.getElementById('modalVirtualAssistance'))">Contact Now</button>
+                <button data-close-button>Contact Now</button>
             </div>
         </div>
 
@@ -205,7 +234,7 @@
                     <li>Cloud solutions</li>
                 </ul>
                 <p><strong>Starting at $199/month</strong></p>
-                <button onclick="location.href='#footer'; closeModal(document.getElementById('modalITSupport'))">Learn More</button>
+                <button data-close-button>Learn More</button>
             </div>
         </div>
 
@@ -220,44 +249,51 @@
                     <li>Data breach prevention</li>
                 </ul>
                 <p><strong>Starting at $299/month</strong></p>
-                <button onclick="location.href='#footer'; closeModal(document.getElementById('modalCyberSecurity'))">Get Protected</button>
+                <button data-close-button>Get Protected</button>
             </div>
         </div>
 
         <div id="overlay"></div>
 
         <section id="about">
-            <h1>About This Amazing Site</h1>
-            <div class="about-content" style="color: white;">
-                <p>I specialize in delivering premium website design and expert IT support services through Alectronic Solutions.</p>
-                <p>This website and the others I have created linking to this one, serves as a showcase for my skills, while offering valuable IT insights through my informative blog.</p>
-                <p>By integrating my expertise with state-of-the-art technology, I provide custom IT solutions tailored to meet your specific requirements.</p>
-                <p>As a skilled professional, I am committed to excellence, ensuring that every project I undertake reflects my passion for client satisfaction. I strive to exceed expectations and create lasting partnerships with my clients, driving their success in the digital world.</p>
-                <p>Every logo was made by me and everything is hand-coded to ensure the highest quality and uniqueness.</p>
+            <h1>About Alectronic Solutions</h1>
+            <div class="about-content">
+                <p>At Alectronic Solutions, I specialize in delivering premium website design and expert IT support services. My mission is to empower businesses with cutting-edge digital solutions tailored to their unique needs.</p>
+                <p>This website serves as a showcase of my skills and dedication to excellence. From hand-coded websites to custom logos, every element reflects my commitment to quality and innovation.</p>
+                <p>By integrating state-of-the-art technology with a client-focused approach, I ensure that every project exceeds expectations and drives success in the digital world.</p>
+                <p>Let’s work together to bring your vision to life and achieve your digital goals.</p>
                 <p><strong>- Alec B.</strong></p>
-                <img src="images/logo.png" alt="logo" class="about-logo">
+                <img src="images/logo.png" alt="Alectronic Solutions Logo" class="about-logo">
             </div>
         </section>
 
         <section id="blog">
-            <h1>Blog</h1>
-            <div class="blog-card">
-                <img src="images/blog1.jpg" alt="Top 5 Website Design Trends to Watch in 2025" onclick="document.querySelector('[data-modal-target=\'#modalBlog1\']').click();" style="cursor: pointer;">
-                <h2>Top 5 Website Design Trends to Watch in 2025</h2>
-                <p>Discover the latest web design trends for 2025, including dark mode, 3D elements, neumorphism, and AI-powered personalization.</p>
-                <button data-modal-target="#modalBlog1">Read More</button>
-            </div>
-            <div class="blog-card">
-                <img src="images/blog2.jpg" alt="Essential Cybersecurity Tips for Small Businesses" onclick="document.querySelector('[data-modal-target=\'#modalBlog2\']').click();" style="cursor: pointer;">
-                <h2>Essential Cybersecurity Tips for Small Businesses</h2>
-                <p>Learn vital cybersecurity practices to protect your business from digital threats, including data encryption, employee training, and secure network setup.</p>
-                <button data-modal-target="#modalBlog2">Read More</button>
-            </div>
-            <div class="blog-card">
-                <img src="images/blog3.jpg" alt="Maximizing IT Support Efficiency" onclick="document.querySelector('[data-modal-target=\'#modalBlog3\']').click();" style="cursor: pointer;">
-                <h2>Maximizing IT Support Efficiency</h2>
-                <p>Discover strategies to streamline your IT support processes, reduce downtime, and improve overall system performance for your business.</p>
-                <button data-modal-target="#modalBlog3">Read More</button>
+            <h1 class="section-title">Latest Blog Posts</h1>
+            <div class="blog-container">
+                <div class="blog-card">
+                    <img src="images/blog1.jpg" alt="Top 5 Website Design Trends to Watch in 2025" data-modal-target="#modalBlog1">
+                    <div class="blog-content">
+                        <h2>Top 5 Website Design Trends to Watch in 2025</h2>
+                        <p>Discover the latest web design trends for 2025, including dark mode, 3D elements, neumorphism, and AI-powered personalization.</p>
+                        <button data-modal-target="#modalBlog1">Read More</button>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <img src="images/blog2.jpg" alt="Essential Cybersecurity Tips for Small Businesses" data-modal-target="#modalBlog2">
+                    <div class="blog-content">
+                        <h2>Essential Cybersecurity Tips for Small Businesses</h2>
+                        <p>Learn vital cybersecurity practices to protect your business from digital threats, including data encryption, employee training, and secure network setup.</p>
+                        <button data-modal-target="#modalBlog2">Read More</button>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <img src="images/blog3.jpg" alt="Maximizing IT Support Efficiency" data-modal-target="#modalBlog3">
+                    <div class="blog-content">
+                        <h2>Maximizing IT Support Efficiency</h2>
+                        <p>Discover strategies to streamline your IT support processes, reduce downtime, and improve overall system performance for your business.</p>
+                        <button data-modal-target="#modalBlog3">Read More</button>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -273,7 +309,7 @@
                     <li><strong>SEO Best Practices:</strong> Follow SEO guidelines to help people find your website easily on search engines.</li>
                     <li><strong>Interactive Elements:</strong> Add fun animations and small interactions to grab attention and make your site more engaging.</li>
                 </ul>
-                <button onclick="location.href='#footer'; closeModal(document.getElementById('modalBlog1'))">Contact</button>
+                <button data-close-button>Close</button>
             </div>
         </div>
 
@@ -288,7 +324,7 @@
                     <li><strong>Cloud Backup Solutions:</strong> Use cloud backups to recover data quickly if needed.</li>
                     <li><strong>24/7 Monitoring:</strong> Use tools to spot and stop threats early.</li>
                 </ul>
-                <button onclick="location.href='#footer'; closeModal(document.getElementById('modalBlog2'))">Contact</button>
+                <button data-close-button>Close</button>
             </div>
         </div>
 
@@ -303,29 +339,31 @@
                     <li><strong>Integrated Communication Tools:</strong> Use platforms that make teamwork easier.</li>
                     <li><strong>Performance Analytics:</strong> Use data to improve IT support services.</li>
                 </ul>
-                <button onclick="location.href='#footer'; closeModal(document.getElementById('modalBlog3'))">Contact</button>
+                <button data-close-button>Close</button>
             </div>
         </div>
 
         <section id="projects" class="projects">
-            <h1>Projects</h1>
-            <div class="project-card">
-                <img src="images/project1.jpg" alt="Custom PC Build" onclick="document.querySelector('[data-modal-target=\'#modalProject1\']').click();" style="cursor: pointer;">
-                <h2>Custom PC Build</h2>
-                <p>A high-performance gaming PC meticulously crafted for enthusiasts seeking top-tier performance. Featuring a custom water cooling loop, RGB lighting, and cutting-edge components, this build is designed to handle anything.</p>
-                <button data-modal-target="#modalProject1">View Details</button>
-            </div>
-            <div class="project-card">
-                <img src="images/project2.jpg" alt="Virtual Comedy Platform" onclick="document.querySelector('[data-modal-target=\'#modalProject2\']').click();" style="cursor: pointer;">
-                <h2>Virtual Comedy Platform</h2>
-                <p>A revolutionary platform that brings live comedy shows to a global audience. With real-time audience interaction, digital ticketing, and advanced moderation tools, this platform empowers comedians to connect with fans like never before.</p>
-                <button data-modal-target="#modalProject2">View Details</button>
-            </div>
-            <div class="project-card">
-                <img src="images/project3.jpg" alt="Hand Coded Website" onclick="document.querySelector('[data-modal-target=\'#modalProject3\']').click();" style="cursor: pointer;">
-                <h2>Hand Coded Website</h2>
-                <p>A fully custom website developed from the ground up using HTML, CSS, and JavaScript. Designed for optimal performance and responsiveness, this project showcases clean code practices and modern design principles.</p>
-                <button data-modal-target="#modalProject3">View Details</button>
+            <h1>Our Projects</h1>
+            <div class="project-container">
+                <div class="project-card">
+                    <img src="images/project1.jpg" alt="Custom PC Build" data-modal-target="#modalProject1">
+                    <h2>Custom PC Build</h2>
+                    <p>A high-performance gaming PC meticulously crafted for enthusiasts seeking top-tier performance. Featuring a custom water cooling loop, RGB lighting, and cutting-edge components, this build is designed to handle anything.</p>
+                    <button data-modal-target="#modalProject1">View Details</button>
+                </div>
+                <div class="project-card">
+                    <img src="images/project2.jpg" alt="Virtual Comedy Platform" data-modal-target="#modalProject2">
+                    <h2>Virtual Comedy Platform</h2>
+                    <p>A revolutionary platform that brings live comedy shows to a global audience. With real-time audience interaction, digital ticketing, and advanced moderation tools, this platform empowers comedians to connect with fans like never before.</p>
+                    <button data-modal-target="#modalProject2">View Details</button>
+                </div>
+                <div class="project-card">
+                    <img src="images/project3.jpg" alt="Hand Coded Website" data-modal-target="#modalProject3">
+                    <h2>Hand Coded Website</h2>
+                    <p>A fully custom website developed from the ground up using HTML, CSS, and JavaScript. Designed for optimal performance and responsiveness, this project showcases clean code practices and modern design principles.</p>
+                    <button data-modal-target="#modalProject3">View Details</button>
+                </div>
             </div>
         </section>
 
@@ -346,7 +384,7 @@
                 <h4>Build Process</h4>
                 <p>This custom gaming PC was designed with both performance and aesthetics in mind. The AMD Ryzen 9 7950X processor and NVIDIA RTX 4090 graphics card ensure top-tier gaming performance, while the custom water cooling loop maintains optimal temperatures even during extended gaming sessions. The RGB lighting adds a personal touch, making this build a standout in any setup.</p>
                 <p>The build process involved meticulous cable management and careful installation of each component to ensure stability and longevity. The final result is a sleek, high-performance machine capable of running the latest AAA games at 4K resolution with ultra settings.</p>
-                <button onclick="location.href='#footer'; closeModal(document.getElementById('modalProject1'))">Close</button>
+                <button data-close-button>Close</button>
             </div>
         </div>
 
@@ -365,7 +403,7 @@
                 <h4>Impact</h4>
                 <p>The Virtual Comedy Platform has transformed how comedians connect with their audience. By providing a virtual stage, comedians can perform live shows from anywhere in the world, reaching a global audience. The platform has hosted over 50 shows, with thousands of attendees enjoying interactive comedy experiences.</p>
                 <p>The real-time interaction features, such as the applause system and chat moderation, have enhanced the overall experience for both comedians and their fans. This project has opened new opportunities for performers in the digital age.</p>
-                <button onclick="location.href='#footer'; closeModal(document.getElementById('modalProject2'))">Close</button>
+                <button data-close-button>Close</button>
             </div>
         </div>
 
@@ -384,7 +422,7 @@
                 <h4>Development Approach</h4>
                 <p>This website was built entirely from scratch without relying on frameworks or libraries. The goal was to showcase clean code practices and demonstrate full control over the development process. The responsive design ensures the site looks great on all devices, from mobile phones to desktops.</p>
                 <p>Key features include smooth scrolling navigation, custom animations, and a clean, modern design. The website is optimized for performance, ensuring fast load times even on slower connections. This project highlights the importance of a well-structured and optimized website for personal branding and portfolio presentation.</p>
-                <button onclick="location.href='#footer'; closeModal(document.getElementById('modalProject3'))">Close</button>
+                <button data-close-button>Close</button>
             </div>
         </div>
 
