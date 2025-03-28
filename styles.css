@@ -1,4 +1,10 @@
 /* General body styling */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -109,8 +115,14 @@ nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
-    justify-content: flex-start; /* Align links slightly to the left */
-    margin-left: -10px; /* Shift the entire navbar links slightly to the left */
+    justify-content: flex-start; /* Align links to the left */
+    margin-left: -3px; /* Shift links slightly left */
+}
+
+@media (min-width: 769px) {
+    nav ul {
+        margin-left: -3px; /* Maintain left shift for desktop */
+    }
 }
 
 nav ul li a {
@@ -195,10 +207,11 @@ nav ul li:last-child {
 
 /* Main container styling */
 .container {
-    width: 80%;
-    margin: auto;
-    overflow: hidden;
-    padding-top: 80px;
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    box-sizing: border-box;
 }
 
 /* Hero section styling */
@@ -550,6 +563,8 @@ section.in-view {
     
     .services-container {
         gap: 2rem;
+        grid-template-columns: 1fr;
+        padding: 0;
     }
     
     .service {
@@ -568,6 +583,25 @@ section.in-view {
     .service p {
         font-size: 1rem;
     }
+}
+
+.section-description {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #f0f0f0;
+}
+
+.service-features {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+    color: #FFD700;
+    font-size: 0.9rem;
+}
+
+.service-features li {
+    margin-bottom: 0.5rem;
 }
 
 /* Projects section styling */
@@ -674,6 +708,8 @@ section.in-view {
 @media (max-width: 768px) {
     .project-container {
         gap: 1.5rem;
+        grid-template-columns: 1fr;
+        padding: 0;
     }
 
     .project-card img {
@@ -692,6 +728,13 @@ section.in-view {
         padding: 0.6rem 1.2rem;
         font-size: 0.9rem;
     }
+}
+
+.portfolio-description {
+    text-align: center;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    color: #f0f0f0;
 }
 
 /* Blog section styling */
@@ -808,6 +851,8 @@ section.in-view {
 @media (max-width: 768px) {
     .blog-container {
         gap: 1.5rem;
+        grid-template-columns: 1fr;
+        padding: 0;
     }
 
     .blog-card img {
@@ -1045,8 +1090,11 @@ footer {
 }
 
 .footer-logo img {
-    height: 100px; /* Larger logo */
-    margin-bottom: 1rem;
+    display: block;
+    margin: 0 auto; /* Center the logo */
+    height: 100px; /* Maintain size */
+    background: none; /* Remove background */
+    border: none; /* Remove border */
     transition: transform 0.3s ease;
 }
 
@@ -1135,12 +1183,14 @@ footer {
 
 .footer-social .social-icons {
     display: flex;
-    justify-content: center;
+    justify-content: center; /* Center the group of logos */
     gap: 1.5rem; /* Adjust spacing between icons */
+    background: none; /* Remove background */
 }
 
 .footer-social a img {
-    height: 40px; /* Larger icons */
+    height: 40px; /* Maintain size */
+    background: none; /* Remove background */
     transition: transform 0.3s ease, filter 0.3s ease;
 }
 
@@ -1273,14 +1323,14 @@ footer {
 
     /* Adjust container width for mobile */
     .container {
-        width: 95%;
-        padding-top: 60px;
+        width: 100%;
+        padding: 0 10px;
     }
 
     /* Adjust section spacing for mobile */
     section {
         padding: 10px;
-        margin: 10px;
+        margin: 10px 0;
     }
 
     /* Adjust blog cards for mobile */
@@ -1577,53 +1627,55 @@ button:hover {
     color: black; /* Ensure text color remains readable */
 }
 
-/* Back to Top Button */
-#backToTop {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #FFD700;
-    color: black;
-    border: none;
-    border-radius: 50%;
-    padding: 10px 15px;
-    cursor: pointer;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    transition: background 0.3s ease, transform 0.3s ease;
-    display: none; /* Hidden by default */
-    z-index: 1000;
-}
-
-#backToTop:hover {
-    background-color: orange;
-    transform: scale(1.1);
-}
-
-/* Dark Mode Toggle Button */
+/* Back to Top Button and Dark Mode Toggle Button Base Styles */
+#backToTop,
 #darkModeToggle {
+    display: block !important; /* Always show buttons */
     position: fixed;
     bottom: 20px;
-    left: 20px;
+    width: 40px;
+    height: 40px;
     background-color: #FFD700;
     color: black;
     border: none;
     border-radius: 50%;
-    padding: 10px 15px;
     cursor: pointer;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    transition: background 0.3s ease, transform 0.3s ease;
-    z-index: 1000;
+    font-size: 20px;
+    line-height: 40px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 99999; /* Ensure buttons are always on top */
+    transition: all 0.3s ease;
 }
 
+#backToTop {
+    right: 20px;
+}
+
+#darkModeToggle {
+    left: 20px;
+}
+
+#backToTop:hover,
 #darkModeToggle:hover {
-    background-color: orange;
-    transform: scale(1.1);
+    background-color: orange !important;
+    transform: scale(1.1) !important;
+    color: black !important;
 }
 
 /* Dark Mode Styles */
 body.dark-mode {
     background: #000;
     color: #fff;
+    filter: grayscale(100%); /* Apply grayscale filter to the entire page */
+}
+
+body.dark-mode #darkModeToggle,
+body.dark-mode #backToTop {
+    filter: none; /* Exclude these buttons from grayscale */
+    background-color: #FFD700; /* Match light mode background */
+    color: black; /* Match light mode text color */
+    border: none; /* Match light mode border */
 }
 
 body.dark-mode header,
@@ -1722,13 +1774,19 @@ body.dark-mode #services .service button:hover {
 #portfolio {
     text-align: center;
     padding: 6rem 2rem;
-    background: none; /* No background */
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(30, 30, 30, 0.9));
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     animation: fadeIn 1s ease-in-out;
+    display: block; /* Ensure the section is displayed */
+    visibility: visible; /* Ensure visibility */
+    opacity: 1; /* Ensure full opacity */
 }
 
 #portfolio h1 {
     font-size: 3rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     color: #FFD700;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     position: relative;
@@ -1746,49 +1804,51 @@ body.dark-mode #services .service button:hover {
     background: linear-gradient(90deg, transparent, #FFD700, transparent);
 }
 
+#portfolio .section-description {
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    color: #f0f0f0;
+}
+
 .icon-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsive grid */
-    gap: 2rem; /* Space between logos */
-    justify-content: center; /* Center the grid */
-    align-items: center; /* Center items vertically */
+    display: flex; /* Use flexbox for centering */
+    flex-wrap: wrap;
+    justify-content: center; /* Center the icons horizontally */
+    gap: 1.5rem; /* Add spacing between icons */
     max-width: 1200px;
     margin: 0 auto;
 }
 
 .icon-placeholder {
-    display: flex;
-    justify-content: center; /* Center the logo */
-    align-items: center; /* Center the logo vertically */
-    background: rgba(255, 255, 255, 0.1); /* Subtle background for better visibility */
-    border-radius: 10px; /* Rounded corners */
-    padding: 1rem; /* Add padding around the logo */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: none; /* Remove border */
+    background: none; /* Remove background */
+    border-radius: 0; /* Remove border radius */
+    box-shadow: none; /* Remove shadow */
+    transition: transform 0.3s ease;
     cursor: pointer;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-}
-
-.icon-placeholder:hover {
-    transform: scale(1.1); /* Slight zoom on hover */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
 }
 
 .icon-placeholder img {
-    width: 100%; /* Ensure logos scale properly */
-    max-width: 120px; /* Limit maximum size */
-    height: auto; /* Maintain aspect ratio */
-    object-fit: contain; /* Ensure logos fit within the container */
+    width: 200px; /* Set a regular size for desktop screens */
+    height: 200px; /* Maintain a square aspect ratio */
+    object-fit: cover;
+    transition: transform 0.3s ease;
 }
 
-/* Adjustments for very small screens */
-@media (max-width: 480px) {
+.icon-placeholder:hover img {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+@media (max-width: 768px) {
     .icon-container {
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Smaller grid for small screens */
-        gap: 1rem; /* Reduce gap */
+        gap: 1rem; /* Adjust spacing for smaller screens */
     }
 
     .icon-placeholder img {
-        max-width: 100px; /* Smaller maximum size */
+        width: 100%; /* Adjust to fit smaller screens */
+        height: auto; /* Maintain aspect ratio */
     }
 }
 
@@ -1826,8 +1886,10 @@ body.dark-mode #services .service button:hover {
 
 .about-logo {
     display: block;
-    margin: 2rem auto 0;
-    height: 120px; /* Slightly larger logo */
+    margin: 2rem auto 0; /* Center the logo */
+    height: 120px; /* Maintain size */
+    background: none; /* Remove background */
+    border: none; /* Remove border */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
     border-radius: 50%; /* Circular logo */

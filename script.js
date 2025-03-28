@@ -211,6 +211,14 @@ document.addEventListener("DOMContentLoaded", () => {
         projectsSection.style.opacity = "1";
     }
 
+    // Ensure portfolio section visibility
+    const portfolioSection = document.querySelector("#portfolio");
+    if (portfolioSection) {
+        portfolioSection.style.display = "block";
+        portfolioSection.style.visibility = "visible";
+        portfolioSection.style.opacity = "1";
+    }
+
     // About logo animations
     const aboutLogo = document.querySelector('.about-logo');
     if (aboutLogo) {
