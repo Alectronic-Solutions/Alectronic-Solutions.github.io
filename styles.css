@@ -113,7 +113,7 @@ nav ul {
     display: flex;
     gap: 1.5rem; /* Increase spacing between links */
     list-style: none;
-    padding: 0;
+    padding: 0 2rem 0 0; /* Add right padding */
     margin: 0;
     justify-content: flex-start; /* Align links to the left */
     margin-left: -3px; /* Shift links slightly left */
@@ -122,6 +122,13 @@ nav ul {
 @media (min-width: 769px) {
     nav ul {
         margin-left: -3px; /* Maintain left shift for desktop */
+        padding-right: 2rem; /* Maintain padding on desktop */
+    }
+}
+
+@media (max-width: 768px) {
+    nav ul.active {
+        padding-right: 1rem; /* Adjust padding for mobile menu */
     }
 }
 
@@ -447,11 +454,19 @@ section.in-view {
 
 .services-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(2, 1fr); /* Change to 2 columns */
     gap: 2.5rem;
-    max-width: 1400px;
+    max-width: 1200px; /* Reduced from 1400px for better 2x2 layout */
     margin: 0 auto;
     padding: 1rem;
+}
+
+@media (max-width: 768px) {
+    .services-container {
+        grid-template-columns: 1fr; /* Stack on mobile */
+        gap: 2rem;
+        padding: 0;
+    }
 }
 
 .service {
@@ -973,7 +988,8 @@ section.in-view {
 }
 
 /* Modal styling */
-.modal {
+.modal,
+.blog-modal {
     display: none;
     position: fixed;
     z-index: 1000;
@@ -982,74 +998,136 @@ section.in-view {
     transform: translate(-50%, -50%);
     width: 90%;
     max-width: 600px;
+    max-height: 80vh; /* Limit height to 80% of viewport */
     border-radius: 15px;
     backdrop-filter: blur(10px);
     background: linear-gradient(145deg, rgba(0, 0, 0, 0.9), rgba(30, 30, 30, 0.9));
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    overflow: hidden;
-    animation: fadeIn 0.3s ease-in-out;
+    overflow-y: auto; /* Enable vertical scrolling */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    padding: 20px;
 }
 
 .modal.active {
     display: block;
 }
 
-.modal-content {
-    padding: 2rem;
+.modal-content,
+.blog-modal-content {
+    padding: 20px;
     text-align: center;
     color: white;
+    height: auto; /* Allow content to define height */
+    overflow-y: visible; /* Show all content */
+    position: relative;
 }
 
-.modal-content h2 {
+.modal-content h2,
+.blog-modal-content h2 {
+    position: sticky;
+    top: 0;
+    background: inherit;
+    padding: 10px 0;
+    margin-bottom: 15px;
+    z-index: 1;
     font-size: 2rem;
     margin-bottom: 1rem;
     color: #FFD700;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
-.modal-content p {
+.modal-content p,
+.blog-modal-content p {
+    margin: 15px 0;
     font-size: 1.1rem;
     line-height: 1.6;
     margin-bottom: 1.5rem;
 }
 
-.modal-content ul {
+.modal-content ul,
+.blog-modal-content ul {
     text-align: left;
-    padding-left: 1.5rem;
+    padding-left: 20px;
+    margin: 15px 0;
     margin-bottom: 1.5rem;
     font-size: 1rem;
     line-height: 1.5;
 }
 
-.modal-content li {
+.modal-content li,
+.blog-modal-content li {
     margin-bottom: 0.5rem;
+    margin-bottom: 10px;
 }
 
-.modal-content button {
-    background: #FFD700;
+.modal-content button,
+.blog-modal-content button {
+    position: sticky;
+    bottom: 0;
+    margin: 15px auto;
+    display: block;
+    margin-top: 15px;
+    padding: 10px 25px;
+    font-size: 1rem;
+    background: orange;
     color: black;
-    font-size: 1.1rem;
-    padding: 10px 20px;
+    font-weight: bold;
     border: none;
     border-radius: 5px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    transition: background 0.3s ease, transform 0.3s ease;
     cursor: pointer;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-    font-weight: bold;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-.modal-content button:hover {
-    background: orange;
+.modal-content button:hover,
+.blog-modal-content button:hover {
+    background: #FFD700; /* Bright yellow background on hover */
+    color: black; /* Ensure text color remains readable */
     transform: scale(1.05);
 }
 
-.modal-content img {
+.modal-content img,
+.blog-modal-content img {
     width: 100%;
     height: auto;
     border-radius: 10px;
     margin-bottom: 1.5rem;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+    .modal,
+    .blog-modal {
+        width: 95%;
+        max-height: 75vh;
+        padding: 15px;
+    }
+
+    .modal-content,
+    .blog-modal-content {
+        padding: 10px;
+        font-size: 0.95rem;
+    }
+
+    /* Add smooth scrollbar for webkit browsers */
+    .modal::-webkit-scrollbar,
+    .blog-modal::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .modal::-webkit-scrollbar-track,
+    .blog-modal::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 3px;
+    }
+
+    .modal::-webkit-scrollbar-thumb,
+    .blog-modal::-webkit-scrollbar-thumb {
+        background: rgba(255, 215, 0, 0.5);
+        border-radius: 3px;
+    }
 }
 
 /* Overlay styling */
@@ -2145,3 +2223,51 @@ body.dark-mode #services .service button:hover {
         font-size: 1.1rem;
     }
 }
+
+/* ...existing code... */
+
+.modal,
+.blog-modal {
+    width: 90%;
+    max-width: 500px;
+    max-height: 70vh;
+    padding: 1rem;
+}
+
+.modal-content,
+.blog-modal-content {
+    padding: 1rem;
+}
+
+.modal-content h2,
+.blog-modal-content h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.modal-content p,
+.blog-modal-content p {
+    font-size: 1rem;
+    margin: 0.75rem 0;
+    line-height: 1.4;
+}
+
+.modal-content ul,
+.blog-modal-content ul {
+    margin: 0.75rem 0;
+    padding-left: 1.25rem;
+}
+
+.modal-content li,
+.blog-modal-content li {
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.modal-content button,
+.blog-modal-content button {
+    margin: 1rem auto 0;
+    padding: 0.75rem 1.5rem;
+}
+
+/* ...existing code... */
