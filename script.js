@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     // Navigation functionality
-    const navLinks = document.querySelectorAll("nav ul li a");
+    const navLinks = document.querySelectorAll("nav ul li a, .site-title a, .logo a");
     const hamburger = document.querySelector(".hamburger");
     const navUl = document.querySelector("nav ul");
 
@@ -23,6 +23,22 @@ document.addEventListener("DOMContentLoaded", () => {
         link.addEventListener("click", () => {
             navUl.classList.remove("active");
             hamburger.classList.remove("active");
+        });
+    });
+
+    navLinks.forEach((link) => {
+        link.addEventListener("click", (e) => {
+            const targetId = link.getAttribute("href").substring(1);
+            if (targetId === "hero") {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            } else {
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    e.preventDefault();
+                    targetElement.scrollIntoView({ behavior: "smooth" });
+                }
+            }
         });
     });
 
@@ -92,13 +108,33 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.classList.toggle("dark-mode");
     });
 
-    // Header hide on scroll
+    // Header hide and stick on scroll
     const header = document.querySelector("header");
     let lastScrollTop = 0;
+    let isScrolling;
+
     window.addEventListener("scroll", () => {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        header.style.top = scrollTop > lastScrollTop ? "-100px" : "0";
+
+        if (scrollTop > lastScrollTop) {
+            header.classList.add("hidden"); // Hide header when scrolling down
+            header.classList.remove("sticky"); // Remove sticky class
+        } else {
+            header.classList.remove("hidden"); // Show header when scrolling up
+            header.classList.add("sticky"); // Add sticky class
+        }
+
         lastScrollTop = scrollTop;
+
+        // Clear timeout if scrolling
+        clearTimeout(isScrolling);
+
+        // Add hidden class after scrolling stops
+        isScrolling = setTimeout(() => {
+            if (scrollTop > 0) {
+                header.classList.add("hidden");
+            }
+        }, 200); // Delay before hiding header after scrolling stops
     });
 
     // Hero title 3D effect
