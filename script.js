@@ -137,43 +137,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 200); // Delay before hiding header after scrolling stops
     });
 
-    // Enhanced 3D hero title effect
-    const heroTitle = document.querySelector('.hero-title');
-    if (heroTitle) {
-        heroTitle.addEventListener('mousemove', (e) => {
-            const { offsetX, offsetY, target } = e;
-            const { offsetWidth, offsetHeight } = target;
-            
-            // Calculate rotation
-            const xPos = ((offsetX / offsetWidth) - 0.5) * 2;
-            const yPos = ((offsetY / offsetHeight) - 0.5) * 2;
-            
-            // Apply more dramatic 3D transform
-            heroTitle.style.transform = `
-                perspective(1000px)
-                rotateX(${yPos * 10}deg)
-                rotateY(${xPos * 10}deg)
-                translateZ(50px)
-            `;
-            
-            // Dynamic shadow based on mouse position
-            const shadowX = xPos * 20;
-            const shadowY = yPos * 20;
-            heroTitle.style.textShadow = `
-                ${shadowX}px ${shadowY}px 7px #fff,
-                ${shadowX * 1.2}px ${shadowY * 1.2}px 10px #fff,
-                ${shadowX * 1.4}px ${shadowY * 1.4}px 21px #FFD700,
-                ${shadowX * 1.6}px ${shadowY * 1.6}px 42px #FFD700,
-                ${shadowX * 1.8}px ${shadowY * 1.8}px 82px #FFD700
-            `;
-        });
-
-        heroTitle.addEventListener('mouseleave', () => {
-            heroTitle.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
-            heroTitle.style.textShadow = '';
-        });
-    }
-
     // Testimonial carousel
     const testimonials = document.querySelectorAll('.testimonial');
     let currentTestimonial = 0;

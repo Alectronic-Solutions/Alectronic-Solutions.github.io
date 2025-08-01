@@ -367,76 +367,33 @@ nav ul li:last-child {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap; /* Allow words to wrap on mobile */
-    gap: 25px; /* Space between Alectronic and Solutions */
+    flex-wrap: wrap;
+    gap: 25px;
 }
 
 /* Style for individual letters */
 .hero-title .letter {
     display: inline-block;
     margin: 0 2px;
-    transition: transform 0.3s ease, text-shadow 0.3s ease;
 }
 
 /* Add space and Solutions text after Alectronic */
-.hero-title:after {
+.hero-title .solutions-text {
     content: "Solutions";
     color: #fff;
-    animation: neonPulse 20s infinite ease-in-out; /* Increased from 15s to 20s for slower animation */
-    white-space: nowrap; /* Prevent Solutions from breaking */
+    margin-left: 25px;
 }
 
-/* Create glowing effect for both words */
+/* Remove all hover and animation effects */
 .hero-title span.glow,
-.hero-title:after {
-    color: #fff;
-    animation: neonPulse 20s infinite ease-in-out; /* Increased from 15s to 20s for slower animation */
-}
-
-@keyframes neonPulse {
-    0%, 100% {
-        text-shadow: 
-            0 0 4px #fff,
-            0 0 7px #fff,
-            0 0 15px #fff,
-            0 0 30px #FFD700,
-            0 0 60px #FFD700,
-            0 0 65px #FFD700,
-            0 0 70px #FFD700,
-            0 0 100px #FFD700;
-    }
-    
-    40%, 60% {
-        text-shadow: 
-            0 0 3px #fff,
-            0 0 6px #fff,
-            0 0 12px #fff,
-            0 0 25px #FFD700,
-            0 0 50px #FFD700,
-            0 0 55px #FFD700,
-            0 0 60px #FFD700,
-            0 0 85px #FFD700;
-    }
-    
-    50% {
-        text-shadow: 
-            0 0 2px #fff,
-            0 0 5px #fff,
-            0 0 10px #fff,
-            0 0 20px #FFD700,
-            0 0 40px #FFD700,
-            0 0 45px #FFD700,
-            0 0 50px #FFD700,
-            0 0 75px #FFD700;
-    }
-}
-
-/* Remove all hover effects */
+.hero-title:after,
 .hero-content:hover .hero-title,
 .hero-title:hover,
 .hero-title span.glow:hover {
-    transform: none !important;
-    box-shadow: none !important;
+    animation: none;
+    transform: none;
+    text-shadow: none;
+    box-shadow: none;
     cursor: default;
 }
 
