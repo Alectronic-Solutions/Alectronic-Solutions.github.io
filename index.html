@@ -12,8 +12,6 @@
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1990430008408543" crossorigin="anonymous"></script>
     <!-- Google Search Console Verification -->
-    <meta name="google-site-verification" content="your-verification-code-from-google" />
-    <!-- Google Site Verification -->
     <meta name="google-site-verification" content="your-verification-code">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-VMEG3ETL2X"></script>
@@ -42,12 +40,18 @@
             }
         });
     </script>
+
+    <!-- Add security headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' https: 'unsafe-inline' 'unsafe-eval'; style-src 'self' https: 'unsafe-inline';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
 </head>
 <body>
     <header>
         <div class="header-container">
             <div class="logo">
-                <a href="#hero">
+                <a href="index.html">
                     <img src="images/logo.png" alt="logo" style="height: 50px;">
                 </a>
             </div>
@@ -72,7 +76,20 @@
     <div class="container main">
         <section id="hero-consultation">
             <div class="hero-content">
-                <h1 class="hero-title">Welcome to Alectronic Solutions</h1>
+                <h1 class="hero-title">
+                    <span class="glow">
+                        <span class="letter">A</span>
+                        <span class="letter">l</span>
+                        <span class="letter">e</span>
+                        <span class="letter">c</span>
+                        <span class="letter">t</span>
+                        <span class="letter">r</span>
+                        <span class="letter">o</span>
+                        <span class="letter">n</span>
+                        <span class="letter">i</span>
+                        <span class="letter">c</span>
+                    </span>
+                </h1>
                 <p>Your trusted partner for website design and dependable IT support services. Let us help you achieve your digital goals with cutting-edge solutions tailored to your needs.</p>
                 <div class="hero-buttons">
                     <button class="hero-button" onclick="location.href='#portfolio'">Explore Portfolio</button>
@@ -96,14 +113,14 @@
                         <span>No Obligation</span>
                     </div>
                 </div>
-                <button onclick="location.href='mailto:alecit.b101@gmail.com'" class="cta-button">
+                <button onclick="scrollToContactForm()" class="cta-button">
                     Request Free Consultation
                 </button>
             </div>
         </section>
 
         <section id="services">
-            <h1 class="section-title">Our Services</h1>
+            <h2 class="section-title">Our Services</h2>
             <p class="section-description">Explore our range of professional services designed to meet your business needs and help you succeed in the digital world.</p>
             <div class="services-container">
                 <div class="service">
@@ -154,7 +171,7 @@
         </section>
 
         <section id="portfolio">
-            <h1>Portfolio</h1>
+            <h2 class="section-title">Portfolio</h2>
             <p class="section-description">Take a look at some of our recent projects showcasing our expertise and creativity.</p>
             <div class="icon-container">
                 <div class="icon-placeholder" onclick="openIframe('https://alectronic-solutions.github.io/Pawfect-Pets/')">
@@ -208,7 +225,7 @@
                 <div class="icon-placeholder" onclick="openIframe('https://alectronic-solutions.github.io/Vintage-Antiques/')">
                     <img src="images/portfolio-17.png" alt="Portfolio 17">
                 </div>
-                <div class="icon-placeholder" onclick="openIframe('https://www.virtualcomedy.net/')">
+                <div class="icon-placeholder" onclick="openIframe('https://www.bestofsfstandup.com/virtualcomedy')">
                     <img src="images/portfolio-18.png" alt="Portfolio 18">
                 </div>
             </div>
@@ -322,7 +339,7 @@
         <div id="overlay"></div>
 
         <section id="about">
-            <h1>About Alectronic Solutions</h1>
+            <h2>About Alectronic Solutions</h2>
             <div class="about-content">
                 <p>At Alectronic Solutions, I specialize in delivering premium website design and expert IT support services. My mission is to empower businesses with cutting-edge digital solutions tailored to their unique needs.</p>
                 <p>This website serves as a showcase of my skills and dedication to excellence. From hand-coded websites to custom logos, every element reflects my commitment to quality and innovation.</p>
@@ -334,7 +351,7 @@
         </section>
 
         <section id="blog">
-            <h1 class="section-title">Latest Blog Posts</h1>
+            <h2 class="section-title">Latest Blog Posts</h2>
             <div class="blog-container">
                 <div class="blog-card">
                     <img src="images/blog1.jpg" alt="Top 5 Website Design Trends to Watch in 2025" data-modal-target="#modalBlog1">
@@ -410,7 +427,7 @@
         </div>
 
         <section id="projects" class="projects">
-            <h1>Our Projects</h1>
+            <h2 class="section-title">Projects</h2>
             <div class="project-container">
                 <div class="project-card">
                     <img src="images/project1.jpg" alt="Custom PC Build" data-modal-target="#modalProject1">
@@ -432,54 +449,6 @@
                 </div>
             </div>
         </section>
-
-        <!-- Project Modals -->
-        <div id="modalProject1" class="modal">
-            <div class="modal-content">
-                <h2>Custom Gaming PC Build</h2>
-                <p>High-performance gaming PC with custom water cooling</p>
-                <ul>
-                    <li>AMD Ryzen 9 7950X</li>
-                    <li>NVIDIA RTX 4090</li>
-                    <li>64GB DDR5</li>
-                    <li>2TB NVMe SSD</li>
-                </ul>
-                <p>Custom water cooling and RGB lighting for optimal performance and aesthetics.</p>
-                <button data-close-button>Close</button>
-            </div>
-        </div>
-
-        <div id="modalProject2" class="modal">
-            <div class="modal-content">
-                <h2>Virtual Comedy Platform</h2>
-                <p>Live streaming platform for comedy shows</p>
-                <ul>
-                    <li>Live Streaming Integration</li>
-                    <li>Real-time Chat</li>
-                    <li>Digital Ticketing</li>
-                    <li>Audience Interaction</li>
-                </ul>
-                <p>Connecting comedians with global audiences through virtual performances.</p>
-                <button data-close-button>Close</button>
-            </div>
-        </div>
-
-        <div id="modalProject3" class="modal">
-            <div class="modal-content">
-                <h2>Hand Coded Website</h2>
-                <p>Custom-built responsive website</p>
-                <ul>
-                    <li>HTML5 & CSS3</li>
-                    <li>Custom Animations</li>
-                    <li>Performance Optimized</li>
-                    <li>Mobile Responsive</li>
-                </ul>
-                <p>Built from scratch with clean code and modern design principles.</p>
-                <button data-close-button>Close</button>
-            </div>
-        </div>
-
-        <div id="overlay"></div>
 
         <section id="testimonials">
             <div class="testimonial-carousel">
@@ -519,11 +488,13 @@
             </div>
             <div class="footer-contact">
                 <h3>Contact Us</h3>
-                <form action="https://formspree.io/f/xkggzqle" method="POST">
+                <form action="https://formspree.io/f/xkggzqle" method="POST" class="contact-form" id="contactForm">
+                    <input type="hidden" name="_csrf" value="">
+                    <input type="text" name="_gotcha" style="display:none">
                     <input type="text" id="name" name="name" placeholder="Your Name" required>
                     <input type="email" id="email" name="email" placeholder="Your Email" required>
                     <textarea id="message" name="message" placeholder="Your Message" required></textarea>
-                    <button type="submit">Send</button>
+                    <button type="submit" id="submitBtn">Send</button>
                 </form>
             </div>
             <div class="footer-social">
@@ -593,5 +564,22 @@
     <button id="darkModeToggle" title="Toggle Dark Mode">&#9790;</button>
 
     <script src="script.js"></script>
+    <script>
+        const faq = [
+            { q: /hello|hi|hey/i, a: "Hello! How can I help you today?" },
+            { q: /website.*cost|price|how much/i, a: "Contact us for a custom quote tailored to your needs!" },
+            { q: /it support|tech support|help/i, a: "We offer comprehensive IT support. Contact us to discuss your needs." },
+            { q: /cyber.?security|secure|hack/i, a: "We provide advanced cybersecurity solutions. Contact us for details." },
+            { q: /contact|email|phone/i, a: "Please use our contact form below to get in touch!" },
+            { q: /portfolio|examples|work/i, a: "Check out our portfolio section above for examples of our work!" },
+            { q: /thank/i, a: "You're welcome! 😊" },
+            { q: /.*/, a: "How can I assist you with our services today?" }
+        ];
+
+        function scrollToContactForm() {
+            const contactForm = document.getElementById('contactForm');
+            contactForm.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
 </body>
 </html>

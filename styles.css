@@ -357,50 +357,87 @@ nav ul li:last-child {
     text-shadow: none;
 }
 
+/* Hero title styling */
 .hero-title {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: #FFD700;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s ease;
-    perspective: 1000px;
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    color: #fff;
+    letter-spacing: 2px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Allow words to wrap on mobile */
+    gap: 25px; /* Space between Alectronic and Solutions */
 }
 
-@keyframes zoomIn {
-    0% {
-        transform: scale(0.5);
-        opacity: 0;
+/* Style for individual letters */
+.hero-title .letter {
+    display: inline-block;
+    margin: 0 2px;
+    transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* Add space and Solutions text after Alectronic */
+.hero-title:after {
+    content: "Solutions";
+    color: #fff;
+    animation: neonPulse 20s infinite ease-in-out; /* Increased from 15s to 20s for slower animation */
+    white-space: nowrap; /* Prevent Solutions from breaking */
+}
+
+/* Create glowing effect for both words */
+.hero-title span.glow,
+.hero-title:after {
+    color: #fff;
+    animation: neonPulse 20s infinite ease-in-out; /* Increased from 15s to 20s for slower animation */
+}
+
+@keyframes neonPulse {
+    0%, 100% {
+        text-shadow: 
+            0 0 4px #fff,
+            0 0 7px #fff,
+            0 0 15px #fff,
+            0 0 30px #FFD700,
+            0 0 60px #FFD700,
+            0 0 65px #FFD700,
+            0 0 70px #FFD700,
+            0 0 100px #FFD700;
     }
-    100% {
-        transform: scale(1);
-        opacity: 1;
+    
+    40%, 60% {
+        text-shadow: 
+            0 0 3px #fff,
+            0 0 6px #fff,
+            0 0 12px #fff,
+            0 0 25px #FFD700,
+            0 0 50px #FFD700,
+            0 0 55px #FFD700,
+            0 0 60px #FFD700,
+            0 0 85px #FFD700;
+    }
+    
+    50% {
+        text-shadow: 
+            0 0 2px #fff,
+            0 0 5px #fff,
+            0 0 10px #fff,
+            0 0 20px #FFD700,
+            0 0 40px #FFD700,
+            0 0 45px #FFD700,
+            0 0 50px #FFD700,
+            0 0 75px #FFD700;
     }
 }
 
-#hero p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    color: white;
-}
-
-#hero button {
-    margin: 0 0.5rem;
-    background: orange;
-    color: black;
-    font-weight: bold;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    border-radius: 5px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    transition: background 0.3s ease, transform 0.3s ease;
-}
-
-#hero button:hover {
-    background: #FFD700; /* Bright yellow background on hover */
-    color: black; /* Ensure text color remains readable */
-    transform: scale(1.05);
+/* Remove all hover effects */
+.hero-content:hover .hero-title,
+.hero-title:hover,
+.hero-title span.glow:hover {
+    transform: none !important;
+    box-shadow: none !important;
+    cursor: default;
 }
 
 /* Section styling */
@@ -1078,7 +1115,6 @@ section.in-view {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     transition: background 0.3s ease, transform 0.3s ease;
-    cursor: pointer;
 }
 
 .modal-content button:hover,
@@ -1534,7 +1570,6 @@ footer {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     transition: background 0.3s ease, transform 0.3s ease;
-    cursor: pointer;
 }
 
 .modal-content button:hover {
@@ -1549,22 +1584,6 @@ footer {
     border-radius: 10px;
     margin-bottom: 1.5rem;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-/* Overlay styling */
-#overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 999;
-    display: none;
-}
-
-#overlay.active {
-    display: block;
 }
 
 /* Testimonials section styling */
@@ -1687,6 +1706,82 @@ footer {
         font-size: 1.2rem; /* Further reduce font size for mobile */
         margin-top: 0.5rem;
         text-align: center;
+    }
+
+    #services .service,
+    .project-card {
+        flex: 1 1 calc(100% - 2rem); /* Full width on mobile */
+        max-width: 100%;
+    }
+
+    #portfolio .icon-placeholder {
+        width: 80px; /* Smaller size for mobile */
+        height: 80px; /* Smaller size for mobile */
+    }
+
+    /* Adjust container width for mobile */
+    .container {
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    /* Adjust section spacing for mobile */
+    section {
+        padding: 10px;
+        margin: 10px 0;
+    }
+
+    /* Adjust blog cards for mobile */
+    .blog-card {
+        flex: 1 1 100%;
+        max-width: 100%;
+        margin: 0.5rem 0;
+    }
+
+    /* Ensure service cards are visible */
+    #services .service {
+        opacity: 1;
+        transform: none;
+        margin: 0.5rem 0;
+    }
+
+    /* Ensure project cards are visible */
+    .project-card {
+        opacity: 1;
+        transform: none;
+        margin: 0.5rem 0;
+    }
+
+    /* Adjust hero section for mobile */
+    #hero {
+        padding: 2rem 0;
+    }
+
+    #hero h1 {
+        font-size: 2rem;
+    }
+
+    #hero p {
+        font-size: 1rem;
+    }
+
+    /* Adjust testimonials for mobile */
+    .testimonial {
+        opacity: 1;
+        padding: 10px;
+    }
+
+    /* Ensure all sections are visible on mobile */
+    section,
+    .service,
+    .project-card,
+    .blog-card,
+    .icon-placeholder,
+    #about,
+    .testimonial {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
     }
 }
 
@@ -2224,256 +2319,28 @@ body.dark-mode #services .service button:hover {
     }
 }
 
-/* ...existing code... */
-
-.modal,
-.blog-modal {
-    width: 90%;
-    max-width: 500px;
-    max-height: 70vh;
-    padding: 1rem;
+/* Portfolio section title */
+#portfolio h1,
+#portfolio h2.section-title,
+#projects h2.section-title {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    color: #FFD700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    position: relative;
+    display: inline-block;
 }
 
-.modal-content,
-.blog-modal-content {
-    padding: 1rem;
-}
-
-.modal-content h2,
-.blog-modal-content h2 {
-    font-size: 1.5rem;
-    margin-bottom: 0.75rem;
-}
-
-.modal-content p,
-.blog-modal-content p {
-    font-size: 1rem;
-    margin: 0.75rem 0;
-    line-height: 1.4;
-}
-
-.modal-content ul,
-.blog-modal-content ul {
-    margin: 0.75rem 0;
-    padding-left: 1.25rem;
-}
-
-.modal-content li,
-.blog-modal-content li {
-    margin-bottom: 0.5rem;
-    font-size: 0.95rem;
-}
-
-.modal-content button,
-.blog-modal-content button {
-    margin: 1rem auto 0;
-    padding: 0.75rem 1.5rem;
-}
-
-/* ...existing code... */
-
-@media (max-width: 768px) {
-    .header-container {
-        display: grid;
-        grid-template-columns: auto 1fr auto;
-        align-items: center;
-        gap: 1rem;
-        padding: 0.5rem 1rem;
-        width: 100%;
-    }
-
-    header .logo {
-        grid-column: 1;
-        justify-self: start;
-    }
-
-    header .logo img {
-        height: 35px;
-        width: auto;
-        margin-right: 0;
-    }
-
-    header .site-title {
-        grid-column: 2;
-        font-size: 1.2rem;
-        margin: 0;
-        padding: 0;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        text-align: center;
-    }
-
-    .hamburger {
-        grid-column: 3;
-        justify-self: end;
-        margin: 0;
-        padding: 0.5rem;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 8px;
-        backdrop-filter: blur(5px);
-    }
-
-    .hamburger div {
-        width: 25px;
-        height: 2px;
-        margin: 4px 0;
-        transition: 0.3s;
-        background-color: #FFD700;
-    }
-
-    nav ul.active {
-        position: fixed;
-        top: 60px;
-        right: 1rem;
-        width: auto;
-        min-width: 200px;
-        background: rgba(0, 0, 0, 0.95);
-        backdrop-filter: blur(10px);
-        border-radius: 12px;
-        padding: 1rem;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        border: 1px solid rgba(255, 215, 0, 0.1);
-    }
-
-    nav ul li {
-        opacity: 0;
-        transform: translateY(10px);
-        animation: slideIn 0.3s ease forwards;
-    }
-
-    nav ul li a {
-        display: block;
-        padding: 0.8rem 1.5rem;
-        font-size: 1.1rem;
-        border-radius: 8px;
-        transition: all 0.3s ease;
-    }
-
-    nav ul li a:hover {
-        background: rgba(255, 215, 0, 0.1);
-        transform: translateX(5px);
-    }
-
-    @keyframes slideIn {
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-}
-
-/* Add sequential animation delay for menu items */
-@media (max-width: 768px) {
-    nav ul.active li:nth-child(1) { animation-delay: 0.1s; }
-    nav ul.active li:nth-child(2) { animation-delay: 0.2s; }
-    nav ul.active li:nth-child(3) { animation-delay: 0.3s; }
-    nav ul.active li:nth-child(4) { animation-delay: 0.4s; }
-    nav ul.active li:nth-child(5) { animation-delay: 0.5s; }
-    nav ul.active li:nth-child(6) { animation-delay: 0.6s; }
-}
-
-@media (max-width: 768px) {
-    .header-container {
-        display: grid;
-        grid-template-columns: auto 1fr auto;
-        align-items: center;
-        gap: 1.5rem;
-        padding: 0.75rem 1.25rem;
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    header .logo {
-        grid-column: 1;
-        justify-self: start;
-    }
-
-    header .logo img {
-        height: 35px;
-        margin: 0;
-    }
-
-    header .site-title {
-        grid-column: 2;
-        font-size: 1.3rem;
-        margin: 0;
-        text-align: center;
-        justify-self: center;
-        padding: 0 1rem;
-        flex-grow: 0;
-    }
-
-    .hamburger {
-        grid-column: 3;
-        justify-self: end;
-        margin: 0;
-        padding: 0.6rem;
-        background: rgba(255, 215, 0, 0.1);
-        border-radius: 8px;
-        backdrop-filter: blur(5px);
-        border: 1px solid rgba(255, 215, 0, 0.2);
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-        transition: all 0.3s ease;
-    }
-
-    .hamburger:hover {
-        background: rgba(255, 215, 0, 0.2);
-        border-color: rgba(255, 215, 0, 0.3);
-        transform: scale(1.05);
-    }
-
-    .hamburger div {
-        width: 26px;
-        height: 2px;
-        margin: 5px 0;
-        background-color: #FFD700;
-        transition: 0.3s;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-    }
-
-    .hamburger.active {
-        background: rgba(255, 215, 0, 0.2);
-    }
-}
-
-/* ...existing code... */
-
-@media (max-width: 768px) {
-    .header-container {
-        display: grid;
-        grid-template-columns: 60px 1fr 60px;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        padding: 0.75rem 1rem;
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    header .logo {
-        grid-column: 1;
-        justify-self: start;
-        padding-left: 0.5rem;
-    }
-
-    header .site-title {
-        grid-column: 2;
-        font-size: 1.3rem;
-        margin: 0;
-        text-align: center;
-        justify-self: center;
-        width: 100%;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .hamburger {
-        grid-column: 3;
-        justify-self: end;
-        padding-right: 0.5rem;
-    }
+#portfolio h2.section-title::after,
+#projects h2.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #FFD700, transparent);
 }
 
 /* ...existing code... */

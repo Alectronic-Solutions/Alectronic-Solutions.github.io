@@ -137,18 +137,40 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 200); // Delay before hiding header after scrolling stops
     });
 
-    // Hero title 3D effect
+    // Enhanced 3D hero title effect
     const heroTitle = document.querySelector('.hero-title');
     if (heroTitle) {
         heroTitle.addEventListener('mousemove', (e) => {
             const { offsetX, offsetY, target } = e;
             const { offsetWidth, offsetHeight } = target;
-            const xPos = (offsetX / offsetWidth) - 0.5;
-            const yPos = (offsetY / offsetHeight) - 0.5;
-            heroTitle.style.transform = `rotateX(${yPos * 30}deg) rotateY(${xPos * 30}deg)`;
+            
+            // Calculate rotation
+            const xPos = ((offsetX / offsetWidth) - 0.5) * 2;
+            const yPos = ((offsetY / offsetHeight) - 0.5) * 2;
+            
+            // Apply more dramatic 3D transform
+            heroTitle.style.transform = `
+                perspective(1000px)
+                rotateX(${yPos * 10}deg)
+                rotateY(${xPos * 10}deg)
+                translateZ(50px)
+            `;
+            
+            // Dynamic shadow based on mouse position
+            const shadowX = xPos * 20;
+            const shadowY = yPos * 20;
+            heroTitle.style.textShadow = `
+                ${shadowX}px ${shadowY}px 7px #fff,
+                ${shadowX * 1.2}px ${shadowY * 1.2}px 10px #fff,
+                ${shadowX * 1.4}px ${shadowY * 1.4}px 21px #FFD700,
+                ${shadowX * 1.6}px ${shadowY * 1.6}px 42px #FFD700,
+                ${shadowX * 1.8}px ${shadowY * 1.8}px 82px #FFD700
+            `;
         });
+
         heroTitle.addEventListener('mouseleave', () => {
-            heroTitle.style.transform = 'rotateX(0) rotateY(0)';
+            heroTitle.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+            heroTitle.style.textShadow = '';
         });
     }
 
@@ -274,4 +296,89 @@ document.addEventListener("DOMContentLoaded", () => {
             openModal(modal);
         });
     });
+
+    // Form security and rate limiting
+    const contactForm = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const submissionDelay = 30000; // 30 seconds between submissions
+    let lastSubmission = 0;
+
+    // Generate CSRF token
+    const csrfToken = Math.random().toString(36).substring(2);
+    document.querySelector('input[name="_csrf"]').value = csrfToken;
+
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // Check submission rate
+        const now = Date.now();
+        if (now - lastSubmission < submissionDelay) {
+            alert('Please wait before submitting again.');
+            return;
+        }
+
+        // Basic spam check
+        const honeypot = document.querySelector('input[name="_gotcha"]').value;
+        if (honeypot) {
+            return; // Silently fail if honeypot is filled
+        }
+
+        // Disable submit button
+        submitBtn.disabled = true;
+        
+        try {
+            const response = await fetch(contactForm.action, {
+                method: 'POST',
+                body: new FormData(contactForm),
+                headers: {
+                    'Accept': 'application/json',
+                    'X-CSRF-Token': csrfToken
+                }
+            });
+
+            if (response.ok) {
+                contactForm.reset();
+                alert('Message sent successfully!');
+                lastSubmission = now;
+            } else {
+                throw new Error('Submission failed');
+            }
+        } catch (error) {
+            alert('Error sending message. Please try again later.');
+        } finally {
+            submitBtn.disabled = false;
+        }
+    });
+
+    // Protect against XSS in chat messages
+    function sanitizeHTML(str) {
+        const div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+    }
+
+    // Update message display function
+    function addMessage(text, from) {
+        const msg = document.createElement('div');
+        msg.className = 'chatbot-message ' + from;
+        msg.style.margin = '0.5rem 0';
+        msg.style.textAlign = from === 'user' ? 'right' : 'left';
+        // Sanitize message content
+        const sanitizedText = sanitizeHTML(text);
+        msg.innerHTML = `<span style="background:${from==='user'?'#FFD700':'#2563eb'};color:${from==='user'?'#222':'#fff'};padding:0.5em 1em;border-radius:16px;display:inline-block;max-width:80%;">${sanitizedText}</span>`;
+        chatbotMessages.appendChild(msg);
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    // Smooth scroll to contact form
+    function scrollToContactForm() {
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.scrollIntoView({ behavior: 'smooth' });
+            // Focus on the name input after scrolling
+            setTimeout(() => {
+                document.getElementById('name').focus();
+            }, 1000);
+        }
+    }
 });
