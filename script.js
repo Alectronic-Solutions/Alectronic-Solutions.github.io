@@ -1,5 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Navigation functionality
+    initNavigation();
+    initModals();
+    initBackToTopButton();
+    initDarkMode();
+    initScrollAnimations();
+    initTestimonialCarousel();
+    initPortfolio();
+    initContactForm();
+    initChatbot();
+});
+
+function initNavigation() {
     const navLinks = document.querySelectorAll("nav ul li a, .site-title a, .logo a");
     const hamburger = document.querySelector(".hamburger");
     const navUl = document.querySelector("nav ul");
@@ -42,7 +53,36 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Modal functionality
+    const header = document.querySelector("header");
+    let lastScrollTop = 0;
+    let isScrolling;
+
+    window.addEventListener("scroll", () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (scrollTop > lastScrollTop) {
+            header.classList.add("hidden"); // Hide header when scrolling down
+            header.classList.remove("sticky"); // Remove sticky class
+        } else {
+            header.classList.remove("hidden"); // Show header when scrolling up
+            header.classList.add("sticky"); // Add sticky class
+        }
+
+        lastScrollTop = scrollTop;
+
+        // Clear timeout if scrolling
+        clearTimeout(isScrolling);
+
+        // Add hidden class after scrolling stops
+        isScrolling = setTimeout(() => {
+            if (scrollTop > 0) {
+                header.classList.add("hidden");
+            }
+        }, 200); // Delay before hiding header after scrolling stops
+    });
+}
+
+function initModals() {
     const openModalButtons = document.querySelectorAll("[data-modal-target]");
     const closeModalButtons = document.querySelectorAll("[data-close-button]");
     const overlay = document.getElementById("overlay");
@@ -93,7 +133,24 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.style.overflow = ""; // Re-enable scrolling
     }
 
-    // Back to Top Button
+    const serviceImages = document.querySelectorAll(".service img[data-modal-target]");
+    serviceImages.forEach((img) => {
+        img.addEventListener("click", () => {
+            const modal = document.querySelector(img.dataset.modalTarget);
+            openModal(modal);
+        });
+    });
+
+    const blogImages = document.querySelectorAll(".blog-card img[data-modal-target]");
+    blogImages.forEach((img) => {
+        img.addEventListener("click", () => {
+            const modal = document.querySelector(img.dataset.modalTarget);
+            openModal(modal);
+        });
+    });
+}
+
+function initBackToTopButton() {
     const backToTopButton = document.getElementById("backToTop");
     window.addEventListener("scroll", () => {
         backToTopButton.style.display = window.scrollY > 300 ? "block" : "none";
@@ -101,58 +158,16 @@ document.addEventListener("DOMContentLoaded", () => {
     backToTopButton.addEventListener("click", () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     });
+}
 
-    // Dark Mode Toggle
+function initDarkMode() {
     const darkModeToggle = document.getElementById("darkModeToggle");
     darkModeToggle.addEventListener("click", () => {
         document.body.classList.toggle("dark-mode");
     });
+}
 
-    // Header hide and stick on scroll
-    const header = document.querySelector("header");
-    let lastScrollTop = 0;
-    let isScrolling;
-
-    window.addEventListener("scroll", () => {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-        if (scrollTop > lastScrollTop) {
-            header.classList.add("hidden"); // Hide header when scrolling down
-            header.classList.remove("sticky"); // Remove sticky class
-        } else {
-            header.classList.remove("hidden"); // Show header when scrolling up
-            header.classList.add("sticky"); // Add sticky class
-        }
-
-        lastScrollTop = scrollTop;
-
-        // Clear timeout if scrolling
-        clearTimeout(isScrolling);
-
-        // Add hidden class after scrolling stops
-        isScrolling = setTimeout(() => {
-            if (scrollTop > 0) {
-                header.classList.add("hidden");
-            }
-        }, 200); // Delay before hiding header after scrolling stops
-    });
-
-    // Testimonial carousel
-    const testimonials = document.querySelectorAll('.testimonial');
-    let currentTestimonial = 0;
-
-    function showTestimonial(index) {
-        testimonials.forEach((testimonial, i) => {
-            testimonial.classList.toggle('active', i === index);
-        });
-    }
-
-    setInterval(() => {
-        currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-        showTestimonial(currentTestimonial);
-    }, 6000);
-
-    // Scroll-triggered animations
+function initScrollAnimations() {
     const elementsToAnimate = document.querySelectorAll('section, .service, .project-card, .blog-card, .icon-placeholder, #about, .testimonial, footer');
     function checkElementsInView() {
         elementsToAnimate.forEach(element => {
@@ -166,7 +181,6 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener('scroll', checkElementsInView);
     window.addEventListener('load', checkElementsInView);
 
-    // Services section visibility
     const servicesSection = document.querySelector("#services");
     if (servicesSection) {
         servicesSection.style.display = "block";
@@ -175,12 +189,10 @@ document.addEventListener("DOMContentLoaded", () => {
         servicesSection.style.zIndex = "2";
     }
 
-    // Ensure services section z-index
     if (servicesSection) {
         servicesSection.style.zIndex = "1"; // Ensure it is above other elements
     }
 
-    // Ensure blog section visibility
     const blogSection = document.querySelector("#blog");
     if (blogSection) {
         blogSection.style.display = "block";
@@ -188,7 +200,6 @@ document.addEventListener("DOMContentLoaded", () => {
         blogSection.style.opacity = "1";
     }
 
-    // Ensure projects section visibility
     const projectsSection = document.querySelector("#projects");
     if (projectsSection) {
         projectsSection.style.display = "block";
@@ -196,7 +207,6 @@ document.addEventListener("DOMContentLoaded", () => {
         projectsSection.style.opacity = "1";
     }
 
-    // Ensure portfolio section visibility
     const portfolioSection = document.querySelector("#portfolio");
     if (portfolioSection) {
         portfolioSection.style.display = "block";
@@ -204,7 +214,6 @@ document.addEventListener("DOMContentLoaded", () => {
         portfolioSection.style.opacity = "1";
     }
 
-    // About logo animations
     const aboutLogo = document.querySelector('.about-logo');
     if (aboutLogo) {
         aboutLogo.setAttribute('tabindex', '0');
@@ -220,8 +229,27 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     }
+}
 
-    // Portfolio iframe viewer
+function initTestimonialCarousel() {
+    const testimonials = document.querySelectorAll('.testimonial');
+    let currentTestimonial = 0;
+
+    function showTestimonial(index) {
+        testimonials.forEach((testimonial) => {
+            testimonial.classList.remove('active');
+        });
+        testimonials[index].classList.add('active');
+    }
+
+    setInterval(() => {
+        let nextTestimonial = (currentTestimonial + 1) % testimonials.length;
+        showTestimonial(nextTestimonial);
+        currentTestimonial = nextTestimonial;
+    }, 6000);
+}
+
+function initPortfolio() {
     window.openIframe = function (url) {
         const overlay = document.createElement('div');
         overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:10000;';
@@ -241,26 +269,9 @@ document.addEventListener("DOMContentLoaded", () => {
             if (e.target === overlay) document.body.removeChild(overlay);
         });
     };
+}
 
-    // Make service images open modals
-    const serviceImages = document.querySelectorAll(".service img[data-modal-target]");
-    serviceImages.forEach((img) => {
-        img.addEventListener("click", () => {
-            const modal = document.querySelector(img.dataset.modalTarget);
-            openModal(modal);
-        });
-    });
-
-    // Make blog images open modals
-    const blogImages = document.querySelectorAll(".blog-card img[data-modal-target]");
-    blogImages.forEach((img) => {
-        img.addEventListener("click", () => {
-            const modal = document.querySelector(img.dataset.modalTarget);
-            openModal(modal);
-        });
-    });
-
-    // Form security and rate limiting
+function initContactForm() {
     const contactForm = document.getElementById('contactForm');
     const submitBtn = document.getElementById('submitBtn');
     const submissionDelay = 30000; // 30 seconds between submissions
@@ -313,27 +324,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Protect against XSS in chat messages
-    function sanitizeHTML(str) {
-        const div = document.createElement('div');
-        div.textContent = str;
-        return div.innerHTML;
-    }
-
-    // Update message display function
-    function addMessage(text, from) {
-        const msg = document.createElement('div');
-        msg.className = 'chatbot-message ' + from;
-        msg.style.margin = '0.5rem 0';
-        msg.style.textAlign = from === 'user' ? 'right' : 'left';
-        // Sanitize message content
-        const sanitizedText = sanitizeHTML(text);
-        msg.innerHTML = `<span style="background:${from==='user'?'#FFD700':'#2563eb'};color:${from==='user'?'#222':'#fff'};padding:0.5em 1em;border-radius:16px;display:inline-block;max-width:80%;">${sanitizedText}</span>`;
-        chatbotMessages.appendChild(msg);
-        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-    }
-
-    // Smooth scroll to contact form
     function scrollToContactForm() {
         const contactForm = document.getElementById('contactForm');
         if (contactForm) {
@@ -344,4 +334,35 @@ document.addEventListener("DOMContentLoaded", () => {
             }, 1000);
         }
     }
-});
+}
+
+function initChatbot() {
+    const faq = [
+        { q: /hello|hi|hey/i, a: "Hello! How can I help you today?" },
+        { q: /website.*cost|price|how much/i, a: "Contact us for a custom quote tailored to your needs!" },
+        { q: /it support|tech support|help/i, a: "We offer comprehensive IT support. Contact us to discuss your needs." },
+        { q: /cyber.?security|secure|hack/i, a: "We provide advanced cybersecurity solutions. Contact us for details." },
+        { q: /contact|email|phone/i, a: "Please use our contact form below to get in touch!" },
+        { q: /portfolio|examples|work/i, a: "Check out our portfolio section above for examples of our work!" },
+        { q: /thank/i, a: "You're welcome! 😊" },
+        { q: /.*/, a: "How can I assist you with our services today?" }
+    ];
+
+    function sanitizeHTML(str) {
+        const div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+    }
+
+    function addMessage(text, from) {
+        const chatbotMessages = document.getElementById('chatbot-messages');
+        const msg = document.createElement('div');
+        msg.className = 'chatbot-message ' + from;
+        msg.style.margin = '0.5rem 0';
+        msg.style.textAlign = from === 'user' ? 'right' : 'left';
+        const sanitizedText = sanitizeHTML(text);
+        msg.innerHTML = `<span style="background:${from==='user'?'#FFD700':'#2563eb'};color:${from==='user'?'#222':'#fff'};padding:0.5em 1em;border-radius:16px;display:inline-block;max-width:80%;">${sanitizedText}</span>`;
+        chatbotMessages.appendChild(msg);
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+}
