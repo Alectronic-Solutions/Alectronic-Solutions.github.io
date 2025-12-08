@@ -6,6 +6,20 @@
     <title>Alectronic Solutions | Digital Architecture & Design</title>
     <meta name="description" content="Alectronic Solutions: Expert web design, backend architecture, and digital strategy. We build high-performance websites that grow your business.">
     
+    <!-- Open Graph / Facebook / iMessage -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://alectronic-solutions.github.io/">
+    <meta property="og:title" content="Alectronic Solutions | Digital Architecture & Design">
+    <meta property="og:description" content="Expert web design, backend architecture, and digital strategy. We build high-performance websites that grow your business.">
+    <meta property="og:image" content="https://alectronic-solutions.github.io/logo.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://alectronic-solutions.github.io/">
+    <meta property="twitter:title" content="Alectronic Solutions | Digital Architecture & Design">
+    <meta property="twitter:description" content="Expert web design, backend architecture, and digital strategy. We build high-performance websites that grow your business.">
+    <meta property="twitter:image" content="https://alectronic-solutions.github.io/logo.png">
+
     <!-- Fonts: Inter for UI, Playfair Display for Headings -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +28,7 @@
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Favicon: Updated to use logo.jpg with fallback logic handled by browser preference or manual swap if needed -->
+    <!-- Favicon -->
     <link rel="icon" href="logo.png" type="image/png">
     
     <style>
@@ -53,7 +67,7 @@
 
         /* --- GLOBAL RESET & ANTI-DRAG --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; font-size: 16px; }
+        html { scroll-behavior: smooth; font-size: 16px; scroll-padding-top: 100px; }
         
         body {
             font-family: 'Inter', sans-serif;
@@ -65,7 +79,8 @@
         }
 
         /* Prevent dragging/selecting UI elements to feel like an App */
-        img, a, button, .card, .logo, .nav-link, h1, h2, h3, h4, h5, .hero-subtitle, .section-header {
+        img, a, button, .card, .logo, .nav-link, h1, h2, h3, h4, h5, .hero-subtitle, .section-header, 
+        .modal-content, .toast, .chatbot-widget {
             -webkit-user-drag: none;
             -khtml-user-drag: none;
             -moz-user-drag: none;
@@ -73,7 +88,7 @@
             user-select: none;
         }
         /* Allow text selection only on content paragraphs for utility */
-        p, li { user-select: text; }
+        p, li, .blog-content, .article-content { user-select: text; }
 
         h1, h2, h3, h4 {
             font-family: 'Playfair Display', serif;
@@ -140,12 +155,13 @@
         .logo { display: flex; align-items: center; gap: 12px; font-size: 1.5rem; font-weight: 700; font-family: 'Playfair Display', serif; }
         .logo i { color: var(--primary); font-size: 1.3rem; }
         
-        /* New Logo Image Style */
         .logo-img { height: 40px; width: 40px; border-radius: 50%; object-fit: cover; }
 
         .nav-links { display: flex; gap: 35px; align-items: center; }
         .nav-links a:not(.btn) { font-size: 0.95rem; font-weight: 500; opacity: 0.8; position: relative; }
         .nav-links a:not(.btn):hover { color: var(--primary); opacity: 1; }
+        .nav-links a:not(.btn):hover::after { width: 100%; }
+        
         .mobile-toggle { display: none; font-size: 1.5rem; color: var(--text-main); }
 
         /* --- HERO --- */
@@ -191,6 +207,23 @@
         }
         .tech-item i { color: var(--primary); margin-right: 10px; font-size: 1.3rem; vertical-align: middle;}
 
+        /* --- PROCESS SECTION (NEW) --- */
+        #process { padding: 120px 0; }
+        .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-top: 50px; }
+        .process-card {
+            background: var(--bg-card); padding: 40px; border-radius: 20px;
+            border: 1px solid var(--border-color); text-align: center; position: relative;
+            transition: 0.3s;
+        }
+        .process-card:hover { transform: translateY(-10px); border-color: var(--primary); }
+        .process-number {
+            background: var(--primary); color: #fff; width: 40px; height: 40px; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center; font-weight: bold;
+            margin: 0 auto 20px; font-size: 1.2rem;
+        }
+        body.dark-mode .process-number { color: #000; }
+        .process-card h3 { margin-bottom: 15px; font-size: 1.3rem; }
+
         /* --- SERVICES --- */
         #services { padding: 120px 0; background: var(--secondary); }
         .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
@@ -227,7 +260,6 @@
         .portfolio-item:hover { transform: translateY(-8px); }
         .portfolio-item img { width: 100%; height: 100%; object-fit: contain; transition: 0.6s; border-radius: 15px;}
         .portfolio-item:hover img { transform: scale(1.05); }
-        /* Clean Look: No Borders, No Shadows on items, just floating graphics */
 
         /* --- TESTIMONIALS --- */
         #testimonials { padding: 120px 0; background: var(--secondary); position: relative; overflow: hidden; }
@@ -341,11 +373,12 @@
         /* --- NOTIFICATIONS --- */
         .toast {
             position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
-            background: #333; color: #fff; padding: 15px 30px; border-radius: 50px;
+            background: rgba(10, 25, 47, 0.95); color: #fff; padding: 15px 30px; border-radius: 50px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2); z-index: 3000; opacity: 0; pointer-events: none; transition: 0.3s;
-            font-size: 0.95rem; font-weight: 600;
+            font-size: 0.95rem; font-weight: 600; backdrop-filter: blur(5px);
         }
         .toast.show { opacity: 1; transform: translate(-50%, -20px); }
+        .toast.success { background: #10b981; color: white; }
 
         /* --- CHATBOT --- */
         .chatbot-widget {
@@ -376,12 +409,22 @@
             background: var(--bg-card); max-width: 900px; width: 100%; max-height: 90vh;
             overflow-y: auto; border-radius: 20px; padding: 0; position: relative; border: 1px solid var(--border-color);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); transform: translateY(20px); transition: transform 0.3s;
-            resize: none; /* Anti-Drag/Resize */
+            resize: none;
         }
         .modal.active .modal-content { transform: translateY(0); }
         .modal-body { padding: 50px; }
         .close-modal { position: absolute; top: 20px; right: 25px; font-size: 2.5rem; color: var(--text-muted); cursor: pointer; z-index: 10; transition: 0.3s;}
         .close-modal:hover { color: var(--primary); transform: rotate(90deg); }
+
+        /* Article Content Styling */
+        .article-header { margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid var(--border-color); }
+        .article-meta { display: flex; gap: 20px; color: var(--text-muted); font-size: 0.9rem; margin-bottom: 10px; }
+        .article-content h3 { font-size: 1.8rem; margin: 30px 0 15px; color: var(--text-main); }
+        .article-content p { font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px; color: var(--text-muted); }
+        .article-content ul { list-style: disc; padding-left: 20px; margin-bottom: 25px; }
+        .article-content li { margin-bottom: 10px; color: var(--text-muted); }
+        .author-bio { display: flex; align-items: center; gap: 15px; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-color); }
+        .author-img { width: 60px; height: 60px; border-radius: 50%; background: #eee; object-fit: cover; }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
@@ -406,19 +449,19 @@
     <!-- Navigation -->
     <nav>
         <div class="container nav-inner">
-            <a href="#" class="logo">
-                <img src="logo.png" alt="Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+            <a href="#" class="logo" draggable="false">
+                <img src="logo.png" alt="Logo" class="logo-img" draggable="false" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
                 <i class="fas fa-layer-group" style="display:none;"></i>
                 <span>Alectronic Solutions</span>
             </a>
             <div class="mobile-toggle"><i class="fas fa-bars"></i></div>
             <ul class="nav-links">
                 <li><a href="#hero">Home</a></li>
+                <li><a href="#process">Our Process</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#testimonials">Reviews</a></li>
                 <li><a href="#blog">Insights</a></li>
-                <li><a href="#contact" class="btn btn-primary">Start Project</a></li>
+                <li><a href="#contact" class="btn btn-primary" draggable="false">Start Project</a></li>
             </ul>
         </div>
     </nav>
@@ -426,14 +469,15 @@
     <!-- Hero Section -->
     <section id="hero">
         <div class="container hero-content reveal">
+            <span class="highlight" style="font-weight:600; letter-spacing:3px; text-transform:uppercase; margin-bottom:20px; display:inline-block; font-size: 0.9rem;">Digital Architecture Firm, Digital Presence</span>
             <h1 class="hero-title">Elevate Your <span class="highlight">Digital Presence.</span></h1>
             <p class="hero-subtitle">We craft high-performance websites, custom backend systems, and automated solutions designed to scale your revenue.</p>
             <div class="hero-btns">
-                <a href="#services" class="btn btn-primary">View Pricing</a>
-                <a href="#portfolio" class="btn btn-outline">Our Work</a>
+                <a href="#services" class="btn btn-primary" draggable="false">View Pricing</a>
+                <a href="#portfolio" class="btn btn-outline" draggable="false">Our Work</a>
             </div>
         </div>
-        <div class="scroll-down" onclick="document.getElementById('services').scrollIntoView()"><i class="fas fa-angle-down"></i></div>
+        <div class="scroll-down" onclick="document.getElementById('process').scrollIntoView()"><i class="fas fa-angle-down"></i></div>
     </section>
 
     <!-- Tech Stack Marquee -->
@@ -457,6 +501,39 @@
         </div>
     </div>
 
+    <!-- Our Process Section (New) -->
+    <section id="process">
+        <div class="container reveal">
+            <div class="section-header">
+                <span class="subtitle">Workflow</span>
+                <h2>How We Build Success</h2>
+                <p class="text-muted">A proven methodology to deliver results, not just code.</p>
+            </div>
+            <div class="process-grid">
+                <div class="process-card">
+                    <div class="process-number">1</div>
+                    <h3>Discovery</h3>
+                    <p>We analyze your business goals, target audience, and technical requirements to build a tailored roadmap.</p>
+                </div>
+                <div class="process-card">
+                    <div class="process-number">2</div>
+                    <h3>Design</h3>
+                    <p>Our team crafts high-fidelity wireframes and prototypes, focusing on user experience and brand identity.</p>
+                </div>
+                <div class="process-card">
+                    <div class="process-number">3</div>
+                    <h3>Development</h3>
+                    <p>We write clean, scalable code using modern frameworks to bring the design to life with robust backend logic.</p>
+                </div>
+                <div class="process-card">
+                    <div class="process-number">4</div>
+                    <h3>Launch</h3>
+                    <p>After rigorous testing, we deploy your site to the cloud, ensuring security, speed, and SEO readiness.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Services & Pricing -->
     <section id="services">
         <div class="container reveal">
@@ -478,7 +555,7 @@
                         <li><i class="fas fa-check"></i> Lead Capture Form</li>
                         <li><i class="fas fa-check"></i> 1 Week Delivery</li>
                     </ul>
-                    <a href="#contact" class="btn btn-outline" style="border-color:var(--text-muted); color:var(--text-main); margin-top:auto;">Select Plan</a>
+                    <a href="#contact" class="btn btn-outline" style="border-color:var(--text-muted); color:var(--text-main); margin-top:auto;" draggable="false">Select Plan</a>
                 </div>
 
                 <!-- Starter -->
@@ -492,7 +569,7 @@
                         <li><i class="fas fa-check"></i> Contact Form Integration</li>
                         <li><i class="fas fa-check"></i> Basic SEO Setup</li>
                     </ul>
-                    <a href="#contact" class="btn btn-outline" style="border-color:var(--text-muted); color:var(--text-main); margin-top:auto;">Select Plan</a>
+                    <a href="#contact" class="btn btn-outline" style="border-color:var(--text-muted); color:var(--text-main); margin-top:auto;" draggable="false">Select Plan</a>
                 </div>
 
                 <!-- Professional -->
@@ -508,7 +585,7 @@
                         <li><i class="fas fa-check"></i> Blog/News Integration</li>
                         <li><i class="fas fa-check"></i> 3 Months Priority Support</li>
                     </ul>
-                    <a href="#contact" class="btn btn-primary" style="margin-top:auto;">Select Plan</a>
+                    <a href="#contact" class="btn btn-primary" style="margin-top:auto;" draggable="false">Select Plan</a>
                 </div>
 
                 <!-- Enterprise -->
@@ -522,7 +599,7 @@
                         <li><i class="fas fa-check"></i> User Authentication</li>
                         <li><i class="fas fa-check"></i> Payment Gateways</li>
                     </ul>
-                    <a href="#contact" class="btn btn-outline" style="border-color:var(--text-muted); color:var(--text-main); margin-top:auto;">Contact Us</a>
+                    <a href="#contact" class="btn btn-outline" style="border-color:var(--text-muted); color:var(--text-main); margin-top:auto;" draggable="false">Contact Us</a>
                 </div>
             </div>
         </div>
@@ -539,57 +616,60 @@
             
             <div class="portfolio-grid">
                 <!-- 18 Portfolio Items - Direct Links & Cut Out Look -->
-                <a href="https://alectronic-solutions.github.io/Pawfect-Pets/" target="_blank" class="portfolio-item">
-                    <img src="images/portfolio-1.png" alt="Pawfect Pets" onerror="this.src='https://placehold.co/600x450/e2e8f0/1e293b?text=Pawfect+Pets'">
+                <a href="https://alectronic-solutions.github.io/Pawfect-Pets/" target="_blank" class="portfolio-item" draggable="false">
+                    <img src="images/portfolio-1.png" alt="Pawfect Pets" loading="lazy" draggable="false" onerror="this.src='https://placehold.co/600x450/e2e8f0/1e293b?text=Pawfect+Pets'">
                 </a>
-                <a href="https://alectronic-solutions.github.io/Luxe-Beauty-Lounge/" target="_blank" class="portfolio-item">
-                    <img src="images/portfolio-2.png" alt="Luxe Beauty" onerror="this.src='https://placehold.co/600x450/e2e8f0/1e293b?text=Luxe+Beauty'">
+                <a href="https://alectronic-solutions.github.io/Luxe-Beauty-Lounge/" target="_blank" class="portfolio-item" draggable="false">
+                    <img src="images/portfolio-2.png" alt="Luxe Beauty" loading="lazy" draggable="false" onerror="this.src='https://placehold.co/600x450/e2e8f0/1e293b?text=Luxe+Beauty'">
                 </a>
-                <a href="https://alectronic-solutions.github.io/Vitality-Fitness/" target="_blank" class="portfolio-item">
-                    <img src="images/portfolio-3.png" alt="Vitality Fitness" onerror="this.src='https://placehold.co/600x450/e2e8f0/1e293b?text=Vitality'">
+                <a href="https://alectronic-solutions.github.io/Vitality-Fitness/" target="_blank" class="portfolio-item" draggable="false">
+                    <img src="images/portfolio-3.png" alt="Vitality Fitness" loading="lazy" draggable="false" onerror="this.src='https://placehold.co/600x450/e2e8f0/1e293b?text=Vitality'">
                 </a>
-                <a href="https://alectronic-solutions.github.io/Grace-Haven-Church/" target="_blank" class="portfolio-item">
-                    <img src="images/portfolio-4.png" alt="Grace Haven" onerror="this.src='https://placehold.co/600x450/e2e8f0/1e293b?text=Grace+Haven'">
+                <a href="https://alectronic-solutions.github.io/Grace-Haven-Church/" target="_blank" class="portfolio-item" draggable="false">
+                    <img src="images/portfolio-4.png" alt="Grace Haven" loading="lazy" draggable="false" onerror="this.src='https://placehold.co/600x450/e2e8f0/1e293b?text=Grace+Haven'">
                 </a>
-                <a href="https://alectronic-solutions.github.io/Coastal-Horizon-Hotel/" target="_blank" class="portfolio-item">
-                    <img src="images/portfolio-5.png" alt="Coastal Horizon" onerror="this.src='https://placehold.co/600x450/e2e8f0/1e293b?text=Coastal+Horizon'">
+                <a href="https://alectronic-solutions.github.io/Coastal-Horizon-Hotel/" target="_blank" class="portfolio-item" draggable="false">
+                    <img src="images/portfolio-5.png" alt="Coastal Horizon" loading="lazy" draggable="false" onerror="this.src='https://placehold.co/600x450/e2e8f0/1e293b?text=Coastal+Horizon'">
                 </a>
-                <a href="https://alectronic-solutions.github.io/Precision-Attorneys/" target="_blank" class="portfolio-item">
-                    <img src="images/portfolio-6.png" alt="Precision Attorneys" onerror="this.src='https://placehold.co/600x450/e2e8f0/1e293b?text=Precision'">
+                <a href="https://alectronic-solutions.github.io/Precision-Attorneys/" target="_blank" class="portfolio-item" draggable="false">
+                    <img src="images/portfolio-6.png" alt="Precision Attorneys" loading="lazy" draggable="false" onerror="this.src='https://placehold.co/600x450/e2e8f0/1e293b?text=Precision'">
                 </a>
-                <a href="https://alectronic-solutions.github.io/Nomad-Escapes/" target="_blank" class="portfolio-item">
-                    <img src="images/portfolio-7.png" alt="Nomad Escapes" onerror="this.src='https://placehold.co/600x450/e2e8f0/1e293b?text=Nomad'">
+                <a href="https://alectronic-solutions.github.io/Nomad-Escapes/" target="_blank" class="portfolio-item" draggable="false">
+                    <img src="images/portfolio-7.png" alt="Nomad Escapes" loading="lazy" draggable="false" onerror="this.src='https://placehold.co/600x450/e2e8f0/1e293b?text=Nomad'">
                 </a>
-                <a href="https://alectronic-solutions.github.io/PodWave-Studios/" target="_blank" class="portfolio-item">
-                    <img src="images/portfolio-8.png" alt="PodWave" onerror="this.src='https://placehold.co/600x450/e2e8f0/1e293b?text=PodWave'">
+                <a href="https://alectronic-solutions.github.io/PodWave-Studios/" target="_blank" class="portfolio-item" draggable="false">
+                    <img src="images/portfolio-8.png" alt="PodWave" loading="lazy" draggable="false" onerror="this.src='https://placehold.co/600x450/e2e8f0/1e293b?text=PodWave'">
                 </a>
-                 <a href="https://alectronic-solutions.github.io/Online-Store/" target="_blank" class="portfolio-item">
-                    <img src="images/portfolio-10.png" alt="Online Store" onerror="this.src='https://placehold.co/600x450/e2e8f0/1e293b?text=Store'">
+                 <a href="https://alectronic-solutions.github.io/Online-Store/" target="_blank" class="portfolio-item" draggable="false">
+                    <img src="images/portfolio-10.png" alt="Online Store" loading="lazy" draggable="false" onerror="this.src='https://placehold.co/600x450/e2e8f0/1e293b?text=Store'">
                 </a>
-                <!-- 9 More Placeholders to reach 18 -->
-                <a href="https://alectronic-solutions.github.io/Pasta-Place/" target="_blank" class="portfolio-item">
-                    <img src="images/portfolio-11.png" alt="Pasta Place" onerror="this.src='https://placehold.co/600x450/e2e8f0/1e293b?text=Project+10'">
+                <!-- Updated Project Links -->
+                <a href="https://alectronic-solutions.github.io/Pasta-Place/" target="_blank" class="portfolio-item" draggable="false">
+                    <img src="images/portfolio-11.png" alt="Pasta Place" loading="lazy" draggable="false" onerror="this.src='https://placehold.co/600x450/e2e8f0/1e293b?text=Pasta+Place'">
                 </a>
-                <a href="https://alectronic-solutions.github.io/Laughtron-3000/" target="_blank" class="portfolio-item">
-                    <img src="images/portfolio-12.png" alt="Laughtron 3000" onerror="this.src='https://placehold.co/600x450/e2e8f0/1e293b?text=Project+11'">
+                <a href="https://alectronic-solutions.github.io/Laughtron-3000/" target="_blank" class="portfolio-item" draggable="false">
+                    <img src="images/portfolio-12.png" alt="Laughtron 3000" loading="lazy" draggable="false" onerror="this.src='https://placehold.co/600x450/e2e8f0/1e293b?text=Laughtron'">
                 </a>
-                <a href="https://alectronic-solutions.github.io/Strength-Together/" target="_blank" class="portfolio-item">
-                    <img src="images/portfolio-13.png" alt="Strength Together" onerror="this.src='https://placehold.co/600x450/e2e8f0/1e293b?text=Project+12'">
+                <a href="https://alectronic-solutions.github.io/Strength-Together/" target="_blank" class="portfolio-item" draggable="false">
+                    <img src="images/portfolio-13.png" alt="Strength Together" loading="lazy" draggable="false" onerror="this.src='https://placehold.co/600x450/e2e8f0/1e293b?text=Strength+Together'">
                 </a>
-                <a href="https://alectronic-solutions.github.io/Elite-Auto-Center/" target="_blank" class="portfolio-item">
-                    <img src="images/portfolio-14.png" alt="Elite Auto Center" onerror="this.src='https://placehold.co/600x450/e2e8f0/1e293b?text=Project+13'">
+                <a href="https://alectronic-solutions.github.io/Elite-Auto-Center/" target="_blank" class="portfolio-item" draggable="false">
+                    <img src="images/portfolio-14.png" alt="Elite Auto Center" loading="lazy" draggable="false" onerror="this.src='https://placehold.co/600x450/e2e8f0/1e293b?text=Elite+Auto'">
                 </a>
-                <a href="https://alectronic-solutions.github.io/Rock-Band/" target="_blank" class="portfolio-item">
-                    <img src="images/portfolio-15.png" alt="Rock Band" onerror="this.src='https://placehold.co/600x450/e2e8f0/1e293b?text=Project+14'">
+                <a href="https://alectronic-solutions.github.io/Rock-Band/" target="_blank" class="portfolio-item" draggable="false">
+                    <img src="images/portfolio-15.png" alt="Rock Band" loading="lazy" draggable="false" onerror="this.src='https://placehold.co/600x450/e2e8f0/1e293b?text=Rock+Band'">
                 </a>
-                <a href="https://alectronic-solutions.github.io/Prime-Cuts-Barber-Shop/" target="_blank" class="portfolio-item">
-                    <img src="images/portfolio-16.png" alt="Prime Cuts Barber Shop" onerror="this.src='https://placehold.co/600x450/e2e8f0/1e293b?text=Project+15'">
+                <a href="https://alectronic-solutions.github.io/Prime-Cuts-Barber-Shop/" target="_blank" class="portfolio-item" draggable="false">
+                    <img src="images/portfolio-16.png" alt="Prime Cuts Barber Shop" loading="lazy" draggable="false" onerror="this.src='https://placehold.co/600x450/e2e8f0/1e293b?text=Prime+Cuts'">
                 </a>
-                <a href="https://alectronic-solutions.github.io/Vintage-Antiques/" target="_blank" class="portfolio-item">
-                    <img src="images/portfolio-17.png" alt="Vintage Antiques" onerror="this.src='https://placehold.co/600x450/e2e8f0/1e293b?text=Project+16'">
+                <a href="https://alectronic-solutions.github.io/Vintage-Antiques/" target="_blank" class="portfolio-item" draggable="false">
+                    <img src="images/portfolio-17.png" alt="Vintage Antiques" loading="lazy" draggable="false" onerror="this.src='https://placehold.co/600x450/e2e8f0/1e293b?text=Vintage+Antiques'">
                 </a>
-                <a href="https://www.bestofsfstandup.com/" target="_blank" class="portfolio-item">
-                    <img src="images/portfolio-18.png" alt="Best of Stand Up" onerror="this.src='https://placehold.co/600x450/e2e8f0/1e293b?text=Project+17'">
+                <a href="https://www.bestofsfstandup.com/" target="_blank" class="portfolio-item" draggable="false">
+                    <img src="images/portfolio-18.png" alt="Best of Stand Up" loading="lazy" draggable="false" onerror="this.src='https://placehold.co/600x450/e2e8f0/1e293b?text=SF+Standup'">
+                </a>
+                 <a href="javascript:void(0)" onclick="showToast('Project Coming Soon')" class="portfolio-item" draggable="false">
+                    <img src="images/portfolio-19.png" loading="lazy" draggable="false" onerror="this.src='https://placehold.co/600x450/e2e8f0/1e293b?text=Upcoming'">
                 </a>
             </div>
         </div>
@@ -610,7 +690,7 @@
                         <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                         <p class="quote">"The team at Alectronic Solutions transformed our online presence. Our lead conversion rate doubled within a month of the new site launch. The attention to detail was immaculate."</p>
                         <div class="client-info">
-                            <div class="client-avatar"><img src="https://placehold.co/100x100/333/fff?text=SJ" alt="Sarah J"></div>
+                            <div class="client-avatar"><img src="https://placehold.co/100x100/333/fff?text=SJ" alt="Sarah J" draggable="false"></div>
                             <div class="client-details">
                                 <h5>Sarah Jenkins</h5>
                                 <span>CEO, TechFlow Inc.</span>
@@ -625,7 +705,7 @@
                         <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                         <p class="quote">"Professional, fast, and incredibly knowledgeable about backend security. I feel much safer knowing our data is architected correctly. Highly recommended for complex projects."</p>
                         <div class="client-info">
-                            <div class="client-avatar"><img src="https://placehold.co/100x100/333/fff?text=MR" alt="Mike R"></div>
+                            <div class="client-avatar"><img src="https://placehold.co/100x100/333/fff?text=MR" alt="Mike R" draggable="false"></div>
                             <div class="client-details">
                                 <h5>Mike Ross</h5>
                                 <span>Founder, LegalEase</span>
@@ -640,7 +720,7 @@
                         <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                         <p class="quote">"They didn't just build a website; they built a sales machine. The $2,500 package was the best investment we made this year. The team went above and beyond."</p>
                         <div class="client-info">
-                            <div class="client-avatar"><img src="https://placehold.co/100x100/333/fff?text=DL" alt="David L"></div>
+                            <div class="client-avatar"><img src="https://placehold.co/100x100/333/fff?text=DL" alt="David L" draggable="false"></div>
                             <div class="client-details">
                                 <h5>David Lee</h5>
                                 <span>Director, Vitality Fitness</span>
@@ -700,7 +780,7 @@
                 <!-- Blog 1 -->
                 <article class="blog-card">
                     <div class="blog-img">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop" alt="Web Design ROI">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop" loading="lazy" alt="Web Design ROI" draggable="false">
                     </div>
                     <div class="blog-content">
                         <span class="blog-meta">Strategy</span>
@@ -713,7 +793,7 @@
                 <!-- Blog 2 -->
                 <article class="blog-card">
                     <div class="blog-img">
-                        <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=2070&auto=format&fit=crop" alt="Security">
+                        <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=2070&auto=format&fit=crop" loading="lazy" alt="Security" draggable="false">
                     </div>
                     <div class="blog-content">
                         <span class="blog-meta">Development</span>
@@ -726,7 +806,7 @@
                 <!-- Blog 3 -->
                 <article class="blog-card">
                     <div class="blog-img">
-                        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=2070&auto=format&fit=crop" alt="Mobile First">
+                        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=2070&auto=format&fit=crop" loading="lazy" alt="Mobile First" draggable="false">
                     </div>
                     <div class="blog-content">
                         <span class="blog-meta">UX Design</span>
@@ -763,7 +843,7 @@
                 </div>
                 
                 <div class="contact-form">
-                    <form action="https://formspree.io/f/xkggzqle" method="POST">
+                    <form id="contactForm" action="https://formspree.io/f/xkggzqle" method="POST">
                         <div class="form-group">
                             <input type="text" name="name" class="form-control" placeholder="Full Name" required>
                         </div>
@@ -781,7 +861,7 @@
                         <div class="form-group">
                             <textarea name="message" class="form-control" rows="4" placeholder="Project details..." required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary" style="width:100%">Submit Request</button>
+                        <button type="submit" class="btn btn-primary" style="width:100%" draggable="false">Submit Request</button>
                     </form>
                 </div>
             </div>
@@ -794,7 +874,7 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <div class="logo">
-                        <img src="logo.jpg" alt="Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                        <img src="logo.jpg" alt="Logo" class="logo-img" draggable="false" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
                         <i class="fas fa-layer-group" style="display:none;"></i>
                         <span>Alectronic Solutions</span>
                     </div>
@@ -838,23 +918,23 @@
     </footer>
 
     <!-- Floating UI Controls -->
-    <button id="darkModeToggle" class="control-btn" title="Toggle Light/Dark Mode">
+    <button id="darkModeToggle" class="control-btn" title="Toggle Light/Dark Mode" draggable="false">
         <i class="fas fa-moon"></i>
     </button>
     
-    <button id="backToTop" class="control-btn" title="Back to Top">
+    <button id="backToTop" class="control-btn" title="Back to Top" draggable="false">
         <i class="fas fa-arrow-up"></i>
     </button>
     
-    <button id="chatTrigger" class="control-btn" title="Chat with us">
+    <button id="chatTrigger" class="control-btn" title="Chat with us" draggable="false">
         <i class="fas fa-comment"></i>
     </button>
 
     <!-- Toast Notification -->
-    <div id="toast" class="toast">Coming Soon!</div>
+    <div id="toast" class="toast" draggable="false">Coming Soon!</div>
 
     <!-- Fixed Chatbot -->
-    <div id="chatbot-widget" class="chatbot-widget">
+    <div id="chatbot-widget" class="chatbot-widget" draggable="false">
         <div class="chat-header">
             <span>Alectronic Assistant</span>
             <i class="fas fa-times" id="closeChat" style="cursor:pointer"></i>
@@ -870,7 +950,7 @@
 
     <!-- Modals -->
     <div id="generalModal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content" draggable="false">
             <span class="close-modal" onclick="closeModal()">&times;</span>
             <div id="modalBody" class="modal-body"></div>
         </div>
@@ -879,21 +959,86 @@
     <!-- Hidden Blog Data -->
     <div id="blogData" style="display:none;">
         <div data-id="blog1">
-            <h2>The Real ROI of Professional Web Design</h2>
-            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop" style="width:100%; border-radius:10px; margin:20px 0;">
-            <p><strong>First Impressions Matter.</strong> It takes about 50 milliseconds (that’s 0.05 seconds) for users to form an opinion about your website. Visual appeal plays a significant role in this first impression.</p>
-            <p>Studies show that a well-designed UI can raise your website’s conversion rate by up to 200%. A professional site signals trust, competence, and reliability to potential clients.</p>
+            <div class="article-header">
+                <div class="article-meta">
+                    <span><i class="far fa-calendar"></i> Oct 24, 2025</span>
+                    <span><i class="far fa-user"></i> Alec Briggs</span>
+                    <span><i class="far fa-clock"></i> 4 Min Read</span>
+                </div>
+                <h2>The Real ROI of Professional Web Design</h2>
+            </div>
+            <div class="article-content">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop" style="width:100%; border-radius:10px; margin-bottom:30px;" draggable="false">
+                <p><strong>First Impressions Matter.</strong> It takes about 50 milliseconds (that’s 0.05 seconds) for users to form an opinion about your website that determines whether they’ll stay or leave. Visual appeal plays a significant role in this first impression.</p>
+                <h3>The Numbers Don't Lie</h3>
+                <p>A professional website isn't just an expense; it's an investment. Studies show that a well-designed UI can raise your website’s conversion rate by up to 200%, and a better UX design could yield conversion rates up to 400%.</p>
+                <h3>Key Benefits of Custom Design:</h3>
+                <ul>
+                    <li><strong>Credibility:</strong> 75% of consumers admit to making judgments on a company's credibility based on the company's website design.</li>
+                    <li><strong>Speed:</strong> Custom code is lighter than template builders, leading to faster load times and better SEO rankings.</li>
+                    <li><strong>Identity:</strong> Stand out from competitors who use generic templates.</li>
+                </ul>
+                <p>Investing in good design is investing in the longevity of your brand.</p>
+                <div class="author-bio">
+                    <img src="logo.jpg" class="author-img" alt="Alec Briggs" onerror="this.src='https://placehold.co/60x60?text=AB'">
+                    <div>
+                        <strong>Alec Briggs</strong><br>
+                        <span style="font-size:0.85rem; color:var(--text-muted);">Lead Architect at Alectronic Solutions</span>
+                    </div>
+                </div>
+            </div>
         </div>
         <div data-id="blog2">
-            <h2>Why API Security Matters</h2>
-            <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=2070&auto=format&fit=crop" style="width:100%; border-radius:10px; margin:20px 0;">
-            <p>APIs are the backbone of modern web applications. However, they are also a major target for attackers. In 2024, API attacks increased by 400%.</p>
-            <p>We implement JWT authentication, Rate Limiting, and strict Input Validation on every backend to ensure your customer data remains safe.</p>
+            <div class="article-header">
+                <div class="article-meta">
+                    <span><i class="far fa-calendar"></i> Nov 02, 2025</span>
+                    <span><i class="far fa-user"></i> Alec Briggs</span>
+                    <span><i class="far fa-clock"></i> 6 Min Read</span>
+                </div>
+                <h2>Why API Security Matters</h2>
+            </div>
+            <div class="article-content">
+                <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=2070&auto=format&fit=crop" style="width:100%; border-radius:10px; margin-bottom:30px;" draggable="false">
+                <p>APIs are the backbone of modern web applications, connecting your data to the frontend. However, they are also a major target for attackers. In 2024, API attacks increased by 400%.</p>
+                <h3>Our Security Standards</h3>
+                <p>At Alectronic Solutions, we don't take shortcuts. Every backend we build includes:</p>
+                <ul>
+                    <li><strong>JWT Authentication:</strong> Secure, stateless user sessions.</li>
+                    <li><strong>Rate Limiting:</strong> Preventing DDOS and brute force attacks.</li>
+                    <li><strong>Input Sanitization:</strong> Preventing SQL injection and XSS attacks.</li>
+                    <li><strong>HTTPS/TLS:</strong> Encryption in transit for all data.</li>
+                </ul>
+                <div class="author-bio">
+                    <img src="logo.jpg" class="author-img" alt="Alec Briggs" onerror="this.src='https://placehold.co/60x60?text=AB'">
+                    <div>
+                        <strong>Alec Briggs</strong><br>
+                        <span style="font-size:0.85rem; color:var(--text-muted);">Lead Architect at Alectronic Solutions</span>
+                    </div>
+                </div>
+            </div>
         </div>
         <div data-id="blog3">
-            <h2>Mobile-First Strategy</h2>
-            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=2070&auto=format&fit=crop" style="width:100%; border-radius:10px; margin:20px 0;">
-            <p>Google now indexes the mobile version of your site first. If your mobile experience is slow, your SEO ranking will suffer regardless of how good your desktop site looks.</p>
+            <div class="article-header">
+                <div class="article-meta">
+                    <span><i class="far fa-calendar"></i> Nov 15, 2025</span>
+                    <span><i class="far fa-user"></i> Alec Briggs</span>
+                    <span><i class="far fa-clock"></i> 3 Min Read</span>
+                </div>
+                <h2>Mobile-First Strategy</h2>
+            </div>
+            <div class="article-content">
+                <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=2070&auto=format&fit=crop" style="width:100%; border-radius:10px; margin-bottom:30px;" draggable="false">
+                <p>Google now indexes the mobile version of your site first. If your mobile experience is slow or broken, your SEO ranking will suffer regardless of how good your desktop site looks.</p>
+                <h3>Responsive vs. Adaptive</h3>
+                <p>We build with CSS Grid and Flexbox to create fluid layouts that adapt to any screen size, ensuring a seamless experience for every visitor.</p>
+                <div class="author-bio">
+                    <img src="logo.jpg" class="author-img" alt="Alec Briggs" onerror="this.src='https://placehold.co/60x60?text=AB'">
+                    <div>
+                        <strong>Alec Briggs</strong><br>
+                        <span style="font-size:0.85rem; color:var(--text-muted);">Lead Architect at Alectronic Solutions</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -1035,6 +1180,36 @@
                 toast.classList.remove('show');
             }, 3000);
         }
+
+        // --- AJAX Contact Form ---
+        const form = document.getElementById('contactForm');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = form.querySelector('button');
+            const originalText = btn.innerText;
+            
+            btn.innerText = 'Sending...';
+            btn.disabled = true;
+
+            const formData = new FormData(form);
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            }).then(response => {
+                if (response.ok) {
+                    showToast('Message Sent Successfully!');
+                    form.reset();
+                } else {
+                    showToast('Oops! There was a problem.');
+                }
+            }).catch(error => {
+                showToast('Error sending message.');
+            }).finally(() => {
+                btn.innerText = originalText;
+                btn.disabled = false;
+            });
+        });
     </script>
 </body>
 </html>
