@@ -11,18 +11,16 @@
     <meta property="og:url" content="https://alectronic-solutions.github.io/">
     <meta property="og:title" content="Alectronic Solutions | Digital Architecture & Design">
     <meta property="og:description" content="Expert web design, backend architecture, and digital strategy. We build high-performance websites that grow your business.">
-    <meta property="og:image" content="https://alectronic-solutions.github.io/images/logo.png">
-    <!-- Explicit dimensions to prevent scraping wrong images -->
+    <meta property="og:image" content="https://alectronic-solutions.github.io/logo.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Alectronic Solutions Logo">
 
-    <!-- Twitter -->
+    <!-- Twitter Card -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://alectronic-solutions.github.io/">
     <meta property="twitter:title" content="Alectronic Solutions | Digital Architecture & Design">
     <meta property="twitter:description" content="Expert web design, backend architecture, and digital strategy. We build high-performance websites that grow your business.">
-    <meta property="twitter:image" content="https://alectronic-solutions.github.io/images/logo.png">
+    <meta property="twitter:image" content="https://alectronic-solutions.github.io/logo.png">
 
     <!-- Fonts: Inter for UI, Playfair Display for Headings -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,7 +31,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Favicon -->
-    <link rel="icon" href="images/logo.png" type="image/png">
+    <link rel="icon" href="logo.png" type="image/png">
     
     <style>
         /* --- CSS VARIABLES --- */
@@ -84,7 +82,7 @@
 
         /* Prevent dragging/selecting UI elements to feel like an App */
         img, a, button, .card, .logo, .nav-link, h1, h2, h3, h4, h5, .hero-subtitle, .section-header, 
-        .modal-content, .toast, .chatbot-widget {
+        .modal-content, .toast, .chatbot-widget, .cookie-banner, .preloader, .portfolio-item {
             -webkit-user-drag: none;
             -khtml-user-drag: none;
             -moz-user-drag: none;
@@ -92,7 +90,7 @@
             user-select: none;
         }
         /* Allow text selection only on content paragraphs for utility */
-        p, li, .blog-content, .article-content { user-select: text; }
+        p, li, .blog-content, .article-content, .about-text { user-select: text; }
 
         h1, h2, h3, h4 {
             font-family: 'Playfair Display', serif;
@@ -117,6 +115,21 @@
         @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-10px);} 60% {transform: translateY(-5px);} }
         @keyframes slideUpFade { from { opacity: 0; transform: translate(-50%, 20px); } to { opacity: 1; transform: translate(-50%, 0); } }
 
+        /* --- PRELOADER --- */
+        .preloader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: var(--bg-body); z-index: 9999;
+            display: flex; justify-content: center; align-items: center;
+            transition: opacity 0.5s ease-out, visibility 0.5s;
+        }
+        .preloader.hidden { opacity: 0; visibility: hidden; }
+        .spinner {
+            width: 50px; height: 50px; border: 3px solid var(--border-color);
+            border-top: 3px solid var(--primary); border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
         /* --- UTILITIES --- */
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; }
         .section-header { text-align: center; max-width: 700px; margin: 0 auto 70px; }
@@ -127,6 +140,12 @@
         }
         .highlight { color: var(--primary); position: relative; }
         .text-muted { color: var(--text-muted); font-size: clamp(1rem, 2vw, 1.1rem); }
+
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed; top: 0; left: 0; height: 4px; background: var(--primary);
+            width: 0%; z-index: 2000; transition: width 0.1s;
+        }
 
         /* --- BUTTONS --- */
         .btn {
@@ -158,15 +177,13 @@
         .nav-inner { display: flex; justify-content: space-between; align-items: center; }
         .logo { display: flex; align-items: center; gap: 12px; font-size: 1.5rem; font-weight: 700; font-family: 'Playfair Display', serif; }
         .logo i { color: var(--primary); font-size: 1.3rem; }
-        
         .logo-img { height: 40px; width: 40px; border-radius: 50%; object-fit: cover; }
 
         .nav-links { display: flex; gap: 35px; align-items: center; }
         .nav-links a:not(.btn) { font-size: 0.95rem; font-weight: 500; opacity: 0.8; position: relative; }
         .nav-links a:not(.btn):hover { color: var(--primary); opacity: 1; }
         .nav-links a:not(.btn):hover::after { width: 100%; }
-        
-        .mobile-toggle { display: none; font-size: 1.5rem; color: var(--text-main); }
+        .mobile-toggle { display: none; font-size: 1.5rem; color: var(--text-main); cursor: pointer;}
 
         /* --- HERO --- */
         #hero {
@@ -211,8 +228,20 @@
         }
         .tech-item i { color: var(--primary); margin-right: 10px; font-size: 1.3rem; vertical-align: middle;}
 
-        /* --- PROCESS SECTION (NEW) --- */
-        #process { padding: 120px 0; }
+        /* --- ABOUT & STATS (NEW) --- */
+        #about { padding: 120px 0; }
+        .about-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .about-text h3 { font-size: 2rem; margin-bottom: 20px; }
+        .about-text p { margin-bottom: 20px; line-height: 1.8; }
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 30px; }
+        .stat-card { background: var(--secondary); padding: 20px; border-radius: 12px; text-align: center; }
+        .stat-number { font-size: 2rem; font-weight: 700; color: var(--primary); display: block; }
+        .stat-label { font-size: 0.9rem; color: var(--text-muted); font-weight: 500; }
+        .about-img { border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-card); }
+        .about-img img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* --- PROCESS SECTION --- */
+        #process { padding: 120px 0; background: var(--secondary); }
         .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-top: 50px; }
         .process-card {
             background: var(--bg-card); padding: 40px; border-radius: 20px;
@@ -229,7 +258,7 @@
         .process-card h3 { margin-bottom: 15px; font-size: 1.3rem; }
 
         /* --- SERVICES --- */
-        #services { padding: 120px 0; background: var(--secondary); }
+        #services { padding: 120px 0; }
         .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
         .pricing-card {
             background: var(--bg-card); border: 1px solid var(--border-color);
@@ -254,7 +283,7 @@
         .features-list li i { color: var(--primary); background: rgba(184, 134, 11, 0.1); padding: 5px; border-radius: 50%; font-size: 0.8rem;}
 
         /* --- PORTFOLIO --- */
-        #portfolio { padding: 120px 0; }
+        #portfolio { padding: 120px 0; background: var(--secondary); }
         .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
         .portfolio-item {
             position: relative; border-radius: 15px; overflow: hidden;
@@ -266,7 +295,7 @@
         .portfolio-item:hover img { transform: scale(1.05); }
 
         /* --- TESTIMONIALS --- */
-        #testimonials { padding: 120px 0; background: var(--secondary); position: relative; overflow: hidden; }
+        #testimonials { padding: 120px 0; position: relative; overflow: hidden; }
         .testimonial-container { max-width: 800px; margin: 0 auto; position: relative; height: 400px; }
         .testimonial-slide {
             position: absolute; inset: 0; opacity: 0; transition: opacity 1.5s ease-in-out;
@@ -292,7 +321,7 @@
         .client-details span { font-size: 0.95rem; color: var(--text-muted); }
 
         /* --- FAQ --- */
-        #faq { padding: 120px 0; }
+        #faq { padding: 120px 0; background: var(--secondary); }
         .faq-grid { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
         .faq-item { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; transition: 0.3s; }
         .faq-item:hover { border-color: var(--primary); }
@@ -306,7 +335,7 @@
         .faq-item.active i { transform: rotate(180deg); transition: 0.3s; color: var(--primary); }
 
         /* --- BLOG --- */
-        #blog { padding: 120px 0; background: var(--secondary); }
+        #blog { padding: 120px 0; }
         .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
         .blog-card {
             background: var(--bg-card); border-radius: 20px; overflow: hidden;
@@ -325,7 +354,7 @@
         .read-more:hover { gap: 10px; }
 
         /* --- CONTACT --- */
-        #contact { padding: 120px 0; }
+        #contact { padding: 120px 0; background: var(--secondary); }
         .contact-wrapper {
             display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px;
             background: var(--bg-card); border-radius: 25px; padding: 70px;
@@ -353,7 +382,7 @@
         .footer-brand p { max-width: 350px; color: #8892b0; line-height: 1.8; }
         .footer-col h4 { margin-bottom: 30px; color: #ffffff; font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; font-weight: 700; }
         .footer-col ul li { margin-bottom: 15px; }
-        .footer-col a { color: #8892b0; transition: 0.3s; }
+        .footer-col a { color: #8892b0; transition: 0.3s; cursor: pointer; }
         .footer-col a:hover { color: #ffffff; padding-left: 5px; }
         .footer-bottom {
             padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1);
@@ -374,7 +403,18 @@
         #chatTrigger { position: fixed; bottom: 100px; right: 30px; background: var(--primary); color: #fff; box-shadow: 0 10px 25px rgba(184, 134, 11, 0.4); }
         body.dark-mode #chatTrigger { color: #000; }
 
-        /* --- NOTIFICATIONS --- */
+        /* --- COOKIE BANNER --- */
+        .cookie-banner {
+            position: fixed; bottom: 0; left: 0; width: 100%; background: var(--bg-card);
+            border-top: 1px solid var(--border-color); padding: 20px; z-index: 4000;
+            display: none; justify-content: center; align-items: center; gap: 20px;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+        }
+        .cookie-banner p { margin: 0; font-size: 0.9rem; }
+        .cookie-banner.show { display: flex; animation: slideUp 0.5s ease; }
+        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+
+        /* --- NOTIFICATIONS & MODALS --- */
         .toast {
             position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
             background: rgba(10, 25, 47, 0.95); color: #fff; padding: 15px 30px; border-radius: 50px;
@@ -444,11 +484,19 @@
             .hero-btns { flex-direction: column; width: 100%; }
             .btn { width: 100%; text-align: center; }
             .testimonial-container { height: 500px; } 
-            #services, #portfolio, #testimonials, #blog, #contact, #faq { padding: 60px 0; }
+            #services, #portfolio, #testimonials, #blog, #contact, #faq, #about { padding: 60px 0; }
         }
     </style>
 </head>
 <body>
+
+    <!-- Preloader -->
+    <div id="preloader" class="preloader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Scroll Progress Bar -->
+    <div id="scrollProgress" class="scroll-progress"></div>
 
     <!-- Navigation -->
     <nav>
@@ -461,9 +509,10 @@
             <div class="mobile-toggle"><i class="fas fa-bars"></i></div>
             <ul class="nav-links">
                 <li><a href="#hero">Home</a></li>
-                <li><a href="#process">Our Process</a></li>
+                <li><a href="#about">About</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
                 <li><a href="#blog">Insights</a></li>
                 <li><a href="#contact" class="btn btn-primary" draggable="false">Start Project</a></li>
             </ul>
@@ -481,7 +530,7 @@
                 <a href="#portfolio" class="btn btn-outline" draggable="false">Our Work</a>
             </div>
         </div>
-        <div class="scroll-down" onclick="document.getElementById('process').scrollIntoView()"><i class="fas fa-angle-down"></i></div>
+        <div class="scroll-down" onclick="document.getElementById('about').scrollIntoView()"><i class="fas fa-angle-down"></i></div>
     </section>
 
     <!-- Tech Stack Marquee -->
@@ -505,7 +554,38 @@
         </div>
     </div>
 
-    <!-- Our Process Section (New) -->
+    <!-- About Section (New) -->
+    <section id="about">
+        <div class="container reveal">
+            <div class="about-wrapper">
+                <div class="about-img">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop" alt="Team at work" loading="lazy" draggable="false">
+                </div>
+                <div class="about-text">
+                    <span class="subtitle">Who We Are</span>
+                    <h3>Architects of the Digital World</h3>
+                    <p>At Alectronic Solutions, we believe that a website is more than just code—it's the digital face of your brand. Founded by Alec Briggs, we specialize in bridging the gap between stunning aesthetic design and robust, scalable backend architecture.</p>
+                    <p>We don't just build websites; we build business assets that work for you 24/7.</p>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <span class="stat-number" data-target="50">0+</span>
+                            <span class="stat-label">Projects</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number" data-target="5">0+</span>
+                            <span class="stat-label">Years Exp</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number" data-target="100">0%</span>
+                            <span class="stat-label">Satisfaction</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
     <section id="process">
         <div class="container reveal">
             <div class="section-header">
@@ -917,9 +997,16 @@
             <div class="footer-bottom">
                 <span>&copy; 2025 Alectronic Solutions. All Rights Reserved.</span>
                 <span>Designed by Alec Briggs</span>
+                <span style="font-size: 0.8rem; cursor: pointer;" onclick="openLegal('privacy')">Privacy & Terms</span>
             </div>
         </div>
     </footer>
+
+    <!-- Cookie Consent Banner -->
+    <div class="cookie-banner" id="cookieBanner">
+        <p>We use cookies to improve your experience. By using our site, you agree to our terms.</p>
+        <button class="btn btn-primary" onclick="acceptCookies()" style="padding: 10px 20px; font-size: 0.8rem;">Accept</button>
+    </div>
 
     <!-- Floating UI Controls -->
     <button id="darkModeToggle" class="control-btn" title="Toggle Light/Dark Mode" draggable="false">
@@ -960,7 +1047,7 @@
         </div>
     </div>
 
-    <!-- Hidden Blog Data -->
+    <!-- Hidden Data (Blogs & Legal) -->
     <div id="blogData" style="display:none;">
         <div data-id="blog1">
             <div class="article-header">
@@ -1044,6 +1131,17 @@
                 </div>
             </div>
         </div>
+        <div data-id="privacy">
+             <h2>Privacy Policy & Terms</h2>
+             <p><strong>Effective Date:</strong> January 1, 2025</p>
+             <p>Welcome to Alectronic Solutions. By accessing our website, you agree to these terms.</p>
+             <h3>1. Services</h3>
+             <p>We provide web design and development services as described on our website. All project details will be agreed upon in a separate contract.</p>
+             <h3>2. Privacy</h3>
+             <p>We respect your privacy. Any information collected via our contact form (Name, Email) is used solely for communication regarding your project. We do not sell or share your data with third parties.</p>
+             <h3>3. Intellectual Property</h3>
+             <p>All code and designs created by Alectronic Solutions remain our property until full payment is received. Upon payment, rights are transferred to the client, excluding any third-party libraries or frameworks.</p>
+        </div>
     </div>
 
     <script>
@@ -1079,18 +1177,69 @@
             }
         });
 
-        // --- Back to Top Logic ---
-        const backToTop = document.getElementById('backToTop');
-        window.addEventListener('scroll', () => {
+        // --- Scroll Progress Bar ---
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("scrollProgress").style.width = scrolled + "%";
+            
+            // Back to Top Button
+            const backToTop = document.getElementById('backToTop');
             if (window.scrollY > 400) {
                 backToTop.style.display = 'flex';
             } else {
                 backToTop.style.display = 'none';
             }
-        });
+            
+            // Animate Stats when in view
+            const statsSection = document.getElementById('about');
+            if (statsSection) {
+                 const rect = statsSection.getBoundingClientRect();
+                 if (rect.top < window.innerHeight && rect.bottom >= 0 && !statsSection.classList.contains('counted')) {
+                     animateStats();
+                     statsSection.classList.add('counted');
+                 }
+            }
+        };
+
+        const backToTop = document.getElementById('backToTop');
         backToTop.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
+
+        // --- Stats Counter Animation ---
+        function animateStats() {
+            const stats = document.querySelectorAll('.stat-number');
+            stats.forEach(stat => {
+                const target = +stat.getAttribute('data-target');
+                const increment = target / 50;
+                let current = 0;
+                const updateCount = () => {
+                    if(current < target) {
+                        current += increment;
+                        stat.innerText = Math.ceil(current) + (stat.innerText.includes('%') ? '%' : '+');
+                        setTimeout(updateCount, 40);
+                    } else {
+                        stat.innerText = target + (stat.innerText.includes('%') ? '%' : '+');
+                    }
+                };
+                updateCount();
+            });
+        }
+
+        // --- Cookie Banner ---
+        const cookieBanner = document.getElementById('cookieBanner');
+        if (!localStorage.getItem('cookiesAccepted')) {
+            setTimeout(() => {
+                cookieBanner.classList.add('show');
+            }, 2000);
+        }
+
+        function acceptCookies() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            cookieBanner.style.display = 'none';
+        }
 
         // --- Chatbot Logic ---
         const chatWidget = document.getElementById('chatbot-widget');
@@ -1138,6 +1287,15 @@
             modalBody.innerHTML = data;
             document.getElementById('generalModal').classList.add('active');
             document.body.style.overflow = 'hidden';
+        }
+        
+        // --- Legal Modal ---
+        window.openLegal = function(id) {
+             const data = document.querySelector(`#blogData div[data-id="${id}"]`).innerHTML;
+             const modalBody = document.getElementById('modalBody');
+             modalBody.innerHTML = data;
+             document.getElementById('generalModal').classList.add('active');
+             document.body.style.overflow = 'hidden';
         }
 
         window.closeModal = function() {
